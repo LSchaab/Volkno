@@ -1,0 +1,291 @@
+/* ============================================================
+   sections.css — Layout for each part of the page
+   (nav, hero, cards, feature rows, image slots, footer)
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   NAVBAR
+   ------------------------------------------------------------ */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  width: 100%;
+  background: rgba(11, 18, 21, 0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.nav__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  height: 80px;
+}
+.nav__logo img { height: 26px; width: auto; }
+
+/* Right-hand group: links + CTA, pushed to the far right */
+.nav__right {
+  margin-left: auto;            /* pushes this whole group right; logo stays left */
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+}
+.nav__links {
+  display: flex;
+  gap: var(--space-4);
+  font-size: var(--fs-small);
+  font-weight: var(--fw-medium);
+}
+.nav__links a { color: var(--text-on-dark-muted); transition: color var(--dur) var(--ease); }
+.nav__links a:hover { color: var(--text-on-dark); }
+.nav__actions { display: flex; gap: var(--space-2); align-items: center; }
+
+/* Hamburger toggle (hidden on desktop) */
+.nav__toggle { display: none; background: none; border: 0; cursor: pointer; padding: 8px; }
+.nav__toggle span,
+.nav__toggle span::before,
+.nav__toggle span::after {
+  content: ""; display: block; width: 22px; height: 2px;
+  background: #fff; border-radius: 2px; transition: transform var(--dur) var(--ease);
+}
+.nav__toggle span::before { transform: translateY(-7px); }
+.nav__toggle span::after  { transform: translateY(5px); }
+
+/* ------------------------------------------------------------
+   HERO
+   ------------------------------------------------------------ */
+.hero {
+  min-height: 760px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr); /* track can't exceed viewport -> no overflow */
+  align-content: center;
+  padding-block: clamp(3rem, 2rem + 6vw, 6rem);
+  overflow: hidden;
+}
+.hero__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-4);
+  width: 100%;
+  min-width: 0;   /* allow this flex item to shrink below its content width */
+}
+.hero__eyebrow {
+  font-size: 0.75rem;  /* 12px */
+  font-weight: var(--fw-bold);
+  color: var(--color-ink);            /* dark, as in the design */
+  letter-spacing: 0.01em;
+  /* Frosted pill: gives the dark + red letters a consistent, readable
+     background instead of fighting the gradient behind them. */
+  align-self: center;                 /* shrink-wrap to the text, stay centered */
+  padding: 0.45em 1em;
+  border-radius: 999px;
+  background: rgb(255, 255, 255);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.12);
+}
+/* The brand "K" letters glow red in the eyebrow... */
+.hero__eyebrow .brand-k { color: var(--color-brand-red); }
+/* ...and read as a brighter, bolder white inside the subtitle */
+.hero__subtitle .brand-k { color: #fff; font-weight: var(--fw-bold); }
+
+.hero__title {
+  max-width: min(12em, 100%);  /* wraps to 2 lines: "Evaluate and Optimize" / "Your Content" */
+  text-wrap: normal;           /* greedy wrap to match the design's line break */
+  color: #fff;
+  text-shadow: 0 2px 30px rgba(0,0,0,0.25);
+}
+.hero__subtitle {
+  max-width: min(52ch, 100%);  /* cap line length, but never wider than screen */
+  color: rgba(255,255,255,0.92);
+  font-size: var(--fs-lead);
+  line-height: var(--lh-loose);
+}
+.hero__actions { display: flex; gap: var(--space-2); flex-wrap: wrap; justify-content: center; }
+
+/* Hero product screenshot, floating below the headline */
+.hero__media {
+  width: 100%;
+  max-width: min(880px, 100%);
+  min-width: 0;   /* let the wrapper (and its image) shrink to fit */
+  margin-top: var(--space-4);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  background: var(--color-light);
+}
+.hero__media img { display: block; width: 100%; height: auto; }
+
+/* ------------------------------------------------------------
+   GENERIC IMAGE SLOT
+   Reserves space (via aspect-ratio) so layout doesn't jump
+   before the image loads. Shows a labelled placeholder when
+   the image is missing.
+   ------------------------------------------------------------ */
+.media {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: rgba(255,255,255,0.03);
+}
+.media img { width: 100%; height: 100%; object-fit: contain; }
+
+/* Dashed placeholder shown behind/instead of a missing image */
+.media--placeholder {
+  display: grid;
+  place-items: center;
+  border: 1.5px dashed rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.02);
+  color: var(--text-on-dark-muted);
+  font-size: var(--fs-small);
+  text-align: center;
+  padding: var(--space-3);
+}
+.media--placeholder code {
+  display: inline-block;
+  margin-top: 6px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+  color: var(--color-accent);
+}
+
+/* ------------------------------------------------------------
+   TWO-COLUMN FEATURE ROW  (text + media side by side)
+   ------------------------------------------------------------ */
+.feature {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 1rem + 4vw, 5rem);
+  align-items: center;
+}
+.feature--reverse .feature__media { order: -1; } /* media on the left */
+.feature__body { display: flex; flex-direction: column; gap: var(--space-3); min-width: 0; }
+.feature__media { min-width: 0; }  /* let chart images shrink, never force overflow */
+.feature__title { font-size: var(--fs-h2); }
+.feature__text { color: var(--text-on-dark-muted); max-width: min(52ch, 100%); }
+
+/* ------------------------------------------------------------
+   CARD GRID  (reusable cards, auto-reflow)
+   ------------------------------------------------------------ */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: var(--space-3);
+}
+.card {
+  background: var(--color-surface);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  transition: transform var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+.card:hover { transform: translateY(-3px); border-color: rgba(157,123,224,0.4); }
+.card__icon {
+  width: 48px; height: 48px;
+  display: grid; place-items: center;
+  border-radius: var(--radius-sm);
+  background: rgba(157,123,224,0.12);
+  margin-bottom: var(--space-1);
+}
+.card__icon img { width: 28px; height: 28px; }
+.card__title { font-size: var(--fs-h3); }
+.card__text { color: var(--text-on-dark-muted); font-size: var(--fs-small); line-height: var(--lh-loose); }
+
+/* ------------------------------------------------------------
+   STAT / METRIC ROW
+   ------------------------------------------------------------ */
+.stats { display: flex; flex-wrap: wrap; gap: var(--space-5); justify-content: center; }
+.stat { text-align: center; }
+.stat__num { font-size: clamp(2rem, 1.2rem + 3vw, 3rem); font-weight: var(--fw-bold); color: #fff; }
+.stat__label { color: var(--text-on-dark-muted); font-size: var(--fs-small); }
+
+/* ------------------------------------------------------------
+   CONTACT / CTA + FOOTER
+   ------------------------------------------------------------ */
+.cta {
+  text-align: center;
+  display: flex; flex-direction: column; align-items: center;
+  gap: var(--space-3);
+}
+.contact-form {
+  width: 100%;
+  max-width: 520px;
+  margin-top: var(--space-3);
+  display: grid;
+  gap: var(--space-2);
+  text-align: left;
+}
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field label { font-size: var(--fs-small); color: var(--text-on-dark-muted); }
+.field input,
+.field textarea {
+  background: var(--color-surface);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  color: #fff;
+  transition: border-color var(--dur) var(--ease);
+}
+.field input:focus,
+.field textarea:focus { outline: none; border-color: var(--color-accent); }
+.field textarea { resize: vertical; min-height: 110px; }
+.contact-form .btn { width: 100%; height: 48px; }
+
+.footer {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-block: var(--space-5);
+}
+.footer__inner {
+  display: flex; flex-wrap: wrap; gap: var(--space-3);
+  align-items: center; justify-content: space-between;
+}
+.footer__logo img { height: 22px; }
+.footer__links { display: flex; gap: var(--space-3); flex-wrap: wrap; font-size: var(--fs-small); color: var(--text-on-dark-muted); }
+.footer__copy { color: var(--text-muted); font-size: var(--fs-small); width: 100%; }
+
+/* ------------------------------------------------------------
+   RESPONSIVE  (mobile-first base above; these scale UP)
+   ------------------------------------------------------------ */
+
+/* Below ~900px: stack two-column feature rows */
+@media (max-width: 900px) {
+  .feature { grid-template-columns: 1fr; }
+  .feature--reverse .feature__media { order: 0; } /* media back on top when stacked */
+}
+
+/* Below ~720px: collapse the whole right group (links + CTA) behind a toggle.
+   The bar then shows just the logo and the hamburger. */
+@media (max-width: 720px) {
+  .nav__inner { justify-content: space-between; } /* logo left, hamburger right */
+  .nav__toggle { display: block; }
+  .nav__right { display: none; }                  /* hidden until opened        */
+
+  /* When the toggle is checked, drop the right group down as a panel */
+  .nav:has(.nav__menu:checked) .nav__right {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-3);
+    position: absolute;
+    top: 80px; left: 0; right: 0;
+    margin: 0;
+    padding: var(--space-3) var(--container-pad) var(--space-4);
+    background: rgba(11,18,21,0.97);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  /* Stack the links vertically inside the panel */
+  .nav:has(.nav__menu:checked) .nav__links {
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+  /* Make the Portal Login button full-width in the panel */
+  .nav:has(.nav__menu:checked) .nav__actions .btn { width: 100%; }
+}

@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VolKno — Evaluate and Optimize Your Content</title>
+  <meta name="description" content="VolKno bridges the gap between you and your audience — capturing high-quality, first-party data to evaluate and optimize your content." />
+
+  <!-- Montserrat (brand typeface) from Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Styles, linked in order: tokens -> base -> gradients -> sections -->
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/gradients.css" />
+  <link rel="stylesheet" href="css/sections.css" />
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVBAR
+       ============================================================ -->
+  <header class="nav">
+    <nav class="nav__inner container" aria-label="Primary">
+      <a class="nav__logo" href="#top" aria-label="VolKno home">
+        <img src="assets/logo/volkno-logo.png" alt="VolKno" />
+      </a>
+
+      <!-- Mobile toggle state (pure CSS: this checkbox controls the menu) -->
+      <input type="checkbox" id="nav-menu" class="nav__menu sr-only" />
+
+      <!-- Everything on the right: links + the single CTA -->
+      <div class="nav__right">
+        <ul class="nav__links">
+          <li><a href="#top">About VolKno</a></li>
+          <li><a href="#data">Our Product</a></li>
+          <li><a href="#approach">Our Approach</a></li>
+          <li><a href="#services">Our Tools</a></li>
+        </ul>
+
+        <div class="nav__actions">
+          <a href="#contact" class="btn btn--ghost">Contact Us</a>
+        </div>
+      </div>
+
+      <!-- Hamburger: shown only on mobile, sits on the far right of the bar -->
+      <label class="nav__toggle" for="nav-menu" aria-label="Toggle navigation">
+        <span></span>
+      </label>
+    </nav>
+  </header>
+
+  <main id="top">
+
+    <!-- ============================================================
+         1. HERO  (mesh gradient background)
+         ============================================================ -->
+    <section class="hero hero-bg">
+      <div class="hero__inner container">
+        <p class="hero__eyebrow">Vol<span class="brand-k">K</span>no (Vol<span class="brand-k">u</span>me = <span class="brand-k">K</span>nowledge)</p>
+        <h1 class="hero__title">Evaluate and Optimize Your Content</h1>
+        <p class="hero__subtitle">
+          Consumers are constantly evolving, Vol<span class="brand-k">K</span>no works
+          to bridge the gap between you, your audience and the content you create.
+        </p>
+        <div class="hero__actions">
+          <a href="#contact" class="btn btn--primary">
+            Book A 15’ Call
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="4" width="18" height="18" rx="2" />
+              <path d="M16 2v4M8 2v4M3 10h18M12 14v4M10 16h4" />
+            </svg>
+          </a>
+        </div>
+
+        <!-- Hero product screenshot (real asset) -->
+        <figure class="hero__media">
+          <img src="Resources/VolKno_dahsboard.svg"
+               alt="VolKno analytics dashboard showing audience sentiment and segments"
+               width="858" height="654" />
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         2. INTRO / VALUE PROP
+         ============================================================ -->
+    <section class="section bg-dark-soft">
+      <div class="container section-head">
+        <h2>Bridging the gap between you and your audience</h2>
+        <p class="lead">
+          The clearer your view of how people feel about your content, the
+          better every decision that follows — from the first cut to the
+          final release.
+        </p>
+      </div>
+      <div class="container">
+        <div class="media" style="max-width: min(861px, 100%); margin-inline: auto; aspect-ratio: 861 / 563; background: transparent;">
+          <img src="assets/images/dashboard-summary.png"
+               alt="VolKno generative summary dashboard: survey results, overall rating and demand, platform preference, and top interest drivers"
+               width="861" height="563" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         3 + 4. LEVERAGING AI  (text + emotion chart)
+         ============================================================ -->
+    <section class="section">
+      <div class="container feature">
+        <div class="feature__body">
+          <p class="eyebrow">First-party data</p>
+          <h2 class="feature__title">Leveraging AI to capture the highest-quality first-party data</h2>
+          <p class="feature__text">
+            VolKno listens to real audience reactions and turns raw comments
+            into structured, emotional signal — so you can see not just what
+            people watched, but how they felt.
+          </p>
+        </div>
+        <figure class="feature__media">
+          <div class="media">
+            <img src="Resources/total_emotionality.svg"
+                 alt="Total emotionality breakdown chart" loading="lazy"
+                 width="365" height="410" />
+          </div>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         5. EMOTION / SENTIMENT FEATURE BLOCK  (media + text)
+         ============================================================ -->
+    <section class="section bg-dark-glow">
+      <div class="container feature feature--reverse">
+        <div class="feature__body">
+          <p class="eyebrow">Emotional intelligence</p>
+          <h2 class="feature__title">A real-time emotion lens for deep optimization</h2>
+          <p class="feature__text">
+            Track the full emotional arc of your content and pinpoint the exact
+            moments that delight, surprise, or lose your audience.
+          </p>
+        </div>
+        <figure class="feature__media">
+          <div class="media">
+            <img src="Resources/emotions_chart.svg"
+                 alt="Emotions over time chart" loading="lazy"
+                 width="229" height="394" />
+          </div>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         6 + 7. ABOUT / OPTIMIZING  (platform preference + interests)
+         ============================================================ -->
+    <section class="section">
+      <div class="container feature">
+        <div class="feature__body">
+          <p class="eyebrow">Know your audience</p>
+          <h2 class="feature__title">Partnering for unique solutions and measurable improvement</h2>
+          <p class="feature__text">
+            Understand platform preference and the top interest drivers behind
+            every segment — and turn those insights into content that performs.
+          </p>
+        </div>
+        <figure class="feature__media">
+          <div class="media">
+            <img src="Resources/platform_preference.svg"
+                 alt="Platform preference chart" loading="lazy"
+                 width="208" height="148" style="margin-bottom:1.5rem" />
+            <img src="Resources/top_interests_drivers.png"
+                 alt="Top interest drivers chart" loading="lazy"
+                 width="311" height="222" />
+          </div>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         8. DASHBOARD BENEFITS  (image slot — provide later)
+         ============================================================ -->
+    <section class="section bg-dark-soft">
+      <div class="container section-head">
+        <h2>Custom-tailored, fully integrated summaries</h2>
+        <p class="lead">A single view that ties every signal together.</p>
+      </div>
+      <div class="container">
+        <div class="media media--placeholder" style="aspect-ratio: 16 / 9;">
+          <div>
+            Dashboard summary image goes here<br />
+            <code>assets/images/dashboard-summary-2.png</code>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         9 + 10. A DIFFERENTIATED APPROACH  (audience personas)
+         ============================================================ -->
+    <section id="approach" class="section">
+      <div class="container section-head">
+        <p class="eyebrow">Why VolKno</p>
+        <h2>A Differentiated Approach</h2>
+        <p class="lead">
+          We don’t just count views. We classify your audience by how they
+          actually feel — from devoted Lovers to vocal Haters.
+        </p>
+      </div>
+      <div class="container card-grid">
+        <article class="card">
+          <div class="card__icon"><img src="Resources/lover.svg" alt="" /></div>
+          <h3 class="card__title">Lovers</h3>
+          <p class="card__text">Your most enthusiastic, high-affinity audience — the people who advocate for your content.</p>
+        </article>
+        <article class="card">
+          <div class="card__icon"><img src="Resources/casual.svg" alt="" /></div>
+          <h3 class="card__title">Casuals</h3>
+          <p class="card__text">Engaged but undecided viewers — the segment with the most room to be won over.</p>
+        </article>
+        <article class="card">
+          <div class="card__icon"><img src="Resources/hater.svg" alt="" /></div>
+          <h3 class="card__title">Haters</h3>
+          <p class="card__text">Detractors whose objections, understood early, reveal exactly what to fix.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         11. FIRST-PARTY DATA  (stat row)
+         ============================================================ -->
+    <section id="data" class="section bg-dark-glow">
+      <div class="container section-head">
+        <p class="eyebrow">Built on real signal</p>
+        <h2>First-party data you actually own</h2>
+      </div>
+      <div class="container stats">
+        <div class="stat"><div class="stat__num">387</div><div class="stat__label">Respondents per study</div></div>
+        <div class="stat"><div class="stat__num">25k–50k</div><div class="stat__label">Segment size range</div></div>
+        <div class="stat"><div class="stat__num">100%</div><div class="stat__label">First-party, consented</div></div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         12 + 13. ADVANCED SERVICES & APPLICATIONS  (icon card grid)
+         ============================================================ -->
+    <section id="services" class="section">
+      <div class="container section-head">
+        <h2>Integrate our Advanced Services and Applications into your project</h2>
+        <p class="lead">Pick the capabilities you need — and we’ll wire them into your workflow.</p>
+      </div>
+      <div class="container card-grid">
+        <article class="card">
+          <div class="card__icon"><img src="assets/icons/sentiment.svg" alt="" /></div>
+          <h3 class="card__title">Sentiment & Emotion</h3>
+          <p class="card__text">Turn open-ended comments into structured emotional signal at scale.</p>
+        </article>
+        <article class="card">
+          <div class="card__icon"><img src="assets/icons/data.svg" alt="" /></div>
+          <h3 class="card__title">Audience Segmentation</h3>
+          <p class="card__text">Group viewers by behavior, demographics, and affinity automatically.</p>
+        </article>
+        <article class="card">
+          <div class="card__icon"><img src="assets/icons/income.svg" alt="" /></div>
+          <h3 class="card__title">Monetization Insight</h3>
+          <p class="card__text">Connect content performance to the metrics that drive revenue.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         14. SOFTWARE DEVELOPMENT KIT  (image slot — provide later)
+         ============================================================ -->
+    <section id="sdk" class="section bg-dark-soft">
+      <div class="container feature">
+        <div class="feature__body">
+          <p class="eyebrow">For builders</p>
+          <h2 class="feature__title">Our software development kit</h2>
+          <p class="feature__text">
+            Drop VolKno’s insights straight into your own product with a
+            developer-friendly SDK and clear documentation.
+          </p>
+          <div class="hero__actions">
+            <a href="#contact" class="btn btn--primary">Get access</a>
+          </div>
+        </div>
+        <figure class="feature__media">
+          <div class="media media--placeholder" style="aspect-ratio: 4 / 3;">
+            <div>
+              SDK preview image goes here<br />
+              <code>assets/images/sdk-preview.png</code>
+            </div>
+          </div>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         15. CONTACT / CTA + FOOTER
+         ============================================================ -->
+    <section id="contact" class="section bg-dark-glow">
+      <div class="container cta">
+        <p class="eyebrow">Get started</p>
+        <h2>Let’s evaluate and optimize your content</h2>
+        <p class="lead text-center">
+          Tell us about your project and we’ll show you what VolKno sees in
+          your audience.
+        </p>
+
+        <!-- Markup + styling only. Wiring this to email/a backend is a
+             separate task (see README). -->
+        <form class="contact-form" action="#" method="post">
+          <div class="field">
+            <label for="cf-name">Name</label>
+            <input id="cf-name" name="name" type="text" autocomplete="name" required />
+          </div>
+          <div class="field">
+            <label for="cf-email">Work email</label>
+            <input id="cf-email" name="email" type="email" autocomplete="email" required />
+          </div>
+          <div class="field">
+            <label for="cf-msg">What would you like to optimize?</label>
+            <textarea id="cf-msg" name="message"></textarea>
+          </div>
+          <button type="submit" class="btn btn--primary">Book a 15’ call</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="footer">
+    <div class="footer__inner container">
+      <a class="footer__logo" href="#top" aria-label="VolKno home">
+        <img src="assets/logo/volkno-logo.png" alt="VolKno" />
+      </a>
+      <ul class="footer__links">
+        <li><a href="#approach">Approach</a></li>
+        <li><a href="#data">First-Party Data</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#sdk">SDK</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <p class="footer__copy">© 2024 VolKno. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

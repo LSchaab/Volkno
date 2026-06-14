@@ -1,0 +1,7 @@
+# macOS folder metadata — not part of the project
+.DS_Store
+**/.DS_Store
+
+# Editor noise
+.vscode/
+.idea/

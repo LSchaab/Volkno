@@ -1,0 +1,100 @@
+/* ============================================================
+   tokens.css — Design tokens for the VolKno landing page
+   ------------------------------------------------------------
+   Think of these like Figma styles/variables: define a value
+   once here, reference it everywhere else. Change it in one
+   place and the whole page updates.
+
+   Values pulled from the Figma HiFi design (06/28/2024).
+   ============================================================ */
+
+:root {
+  /* ----- Brand & gradient palette ----- */
+  --color-hero-base:    #5f200c;  /* dark burnt-orange base behind the hero mesh */
+  --color-blob-purple:  #9948aa;  /* purple blob (top-left of hero)               */
+  --color-blob-magenta: #c8156b;  /* magenta/pink blob                            */
+  --color-blob-red:     #de493b;  /* red blob (center-top)                        */
+  --color-blob-coral:   #ef786d;  /* coral blob                                   */
+  --color-blob-orange:  #e55232;  /* orange blob (right)                          */
+  --color-blob-glow:    #fff0f5;  /* soft pink glow (low-center)                  */
+
+  --color-accent:       #9d7be0;  /* lavender accent used for eyebrow/links       */
+  --color-accent-strong:#9948aa;  /* stronger purple accent                       */
+  --color-brand-red:    #e8232e;  /* the red "K" tile from the logo               */
+
+  /* ----- Neutrals (dark theme) ----- */
+  --color-ink:          #0b1215;  /* near-black text on light surfaces            */
+  --color-ink-2:        #0e1012;  /* near-black, second tone                      */
+  --color-bg:           #0b1215;  /* page background (dark)                       */
+  --color-surface:      #14181b;  /* raised dark card surface                     */
+  --color-surface-2:    #1c2125;  /* second dark surface                          */
+  --color-light:        #f8f8ff;  /* near-white (buttons, light cards)            */
+  --color-light-2:      #f1f1f2;  /* light gray surface                           */
+
+  /* ----- Text colors ----- */
+  --text-on-dark:       #ffffff;  /* primary text on dark/gradient                */
+  --text-on-dark-muted: rgba(255,255,255,0.72);
+  --text-on-light:      #0b1215;  /* primary text on light surfaces               */
+  --text-muted:         #838588;  /* secondary gray text                          */
+  --text-muted-2:       #53555a;
+
+  /* ----- Status colors (from dashboard mockups) ----- */
+  --color-positive:     #008043;
+  --color-negative:     #de493b;
+
+  /* ----- Typography -----
+     Montserrat is the brand typeface (free Google Font).
+     Sizes use clamp(MIN, FLUID, MAX) so they scale smoothly
+     between mobile and desktop without extra breakpoints.     */
+  --font-sans: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  --fw-normal: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --fw-extrabold: 800;
+
+  /* Type scale — desktop targets: h1 64, h2 ~40, h3 ~22, body 16 */
+  --fs-display: clamp(2.25rem, 1.2rem + 4.4vw, 4rem);   /* hero h1  36 -> 64px */
+  --fs-h2:      clamp(1.75rem, 1.1rem + 2.7vw, 2.5rem);  /* section  28 -> 40px */
+  --fs-h3:      clamp(1.125rem, 0.9rem + 1vw, 1.375rem); /* card     18 -> 22px */
+  --fs-lead:    clamp(1.0625rem, 0.95rem + 0.5vw, 1.25rem); /* lead   17 -> 20px */
+  --fs-body:    1rem;        /* 16px */
+  --fs-small:   0.875rem;    /* 14px */
+  --fs-eyebrow: 0.8125rem;   /* 13px — uppercase labels */
+
+  --lh-tight: 1.1;
+  --lh-snug:  1.25;
+  --lh-base:  1.5;
+  --lh-loose: 1.6;
+
+  /* ----- Spacing scale (8px base) ----- */
+  --space-1: 0.5rem;   /*  8px */
+  --space-2: 1rem;     /* 16px */
+  --space-3: 1.5rem;   /* 24px */
+  --space-4: 2rem;     /* 32px */
+  --space-5: 3rem;     /* 48px */
+  --space-6: 4rem;     /* 64px */
+  --space-7: 6rem;     /* 96px */
+  --space-8: 8rem;     /* 128px */
+
+  /* Fluid vertical padding for sections */
+  --section-pad-y: clamp(3rem, 1.5rem + 6vw, 7rem);
+
+  /* ----- Layout ----- */
+  --container-max: 1200px;   /* content column inside the 1440 frame */
+  --container-pad: clamp(1.25rem, 0.5rem + 3vw, 3rem); /* side gutters */
+
+  /* ----- Radii & shadows ----- */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+
+  --shadow-card: 0 20px 50px -20px rgba(0,0,0,0.5);
+  --shadow-soft: 0 10px 30px -15px rgba(0,0,0,0.4);
+
+  /* ----- Motion ----- */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur: 240ms;
+}

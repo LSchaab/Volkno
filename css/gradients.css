@@ -1,0 +1,54 @@
+/* ============================================================
+   gradients.css — One continuous page background
+   ------------------------------------------------------------
+   The "mesh / blob gradient" (purple -> magenta -> red -> orange,
+   plus a soft pink glow and a warm burnt-orange wash) lives on
+   the PAGE itself. It is concentrated at the top and fades into
+   the dark base color further down.
+
+   Every content section is transparent, so this one gradient
+   flows behind all of them and is never "cut off" by a section
+   edge. (Cards and form fields keep their own solid fills.)
+
+   To fine-tune: nudge each radial's position ("at X% Y%") and
+   size. They resolve against the gradient band whose height is
+   set by `background-size` below — raise that height to let the
+   color bleed further down the page.
+   ============================================================ */
+
+body {
+  background-color: var(--color-bg);   /* dark base for the whole page */
+  background-image:
+    /* soft pink glow, low-center of the hero */
+    radial-gradient(42% 30% at 47% 60%, rgba(255, 240, 245, 0.60) 0%, transparent 62%),
+    /* purple — top-left */
+    radial-gradient(62% 54% at 3% 6%,   var(--color-blob-purple)  0%, transparent 60%),
+    /* magenta — left of center */
+    radial-gradient(56% 52% at 27% 34%, var(--color-blob-magenta) 0%, transparent 62%),
+    /* red — center-top */
+    radial-gradient(68% 48% at 52% 12%, var(--color-blob-red)     0%, transparent 62%),
+    /* coral — mid-right */
+    radial-gradient(52% 50% at 75% 26%, var(--color-blob-coral)   0%, transparent 60%),
+    /* orange — right edge */
+    radial-gradient(60% 56% at 95% 20%, var(--color-blob-orange)  0%, transparent 60%),
+    /* warm burnt-orange wash that grounds the whole hero band */
+    radial-gradient(150% 90% at 50% 18%, var(--color-hero-base)   0%, transparent 74%);
+  background-repeat: no-repeat;
+  background-size: 100% 1650px;   /* colored band fills the hero and bleeds below before fading */
+  background-position: center top;
+  background-attachment: scroll;  /* scrolls with the page (not fixed) */
+}
+
+/* The hero no longer paints its own background — it floats on the
+   page gradient above. */
+.hero-bg {
+  position: relative;
+  background: transparent;
+}
+
+/* All content sections are transparent so the page gradient (and the
+   dark base lower down) show through continuously, with no seams. */
+.bg-dark-soft,
+.bg-dark-glow {
+  background: transparent;
+}
