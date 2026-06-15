@@ -52,3 +52,53 @@ body {
 .bg-dark-glow {
   background: transparent;
 }
+
+/* ------------------------------------------------------------
+   "BRIDGING THE GAP" SECTION  (#about) — brand gradient SHAPE
+   ------------------------------------------------------------
+   NOT a full-width section background. Instead, a single contained,
+   organic shape (the recolored Figma "body gradient" vector) sits
+   BEHIND the content as an ambient glow — red -> magenta, softened
+   with a heavy blur so its edges fade into the dark page.
+
+   The shape is the `.about__glow` <div> in the markup. We do NOT
+   clip it — the heavy blur already fades every edge softly into the
+   dark page, so it melts away on its own. (Clipping it with
+   overflow:hidden would chop the soft blur into a hard straight
+   line at the section edge — the exact "cut gradient" we're avoiding.)
+   It's stacked behind the text + dashboard image with z-index.
+
+   NOTE: we deliberately do NOT use `isolation: isolate` here. That
+   would turn #about into its own atomic layer that paints on top of
+   the NEXT section — so the glow (which now hangs below #about) would
+   cover the "Leveraging AI" heading. Without it, the glow's z-index:-1
+   drops it behind ALL page content (but above the page background),
+   which is exactly what we want.
+   ------------------------------------------------------------ */
+#about {
+  position: relative;   /* anchor the glow shape to this section */
+}
+.about__glow {
+  position: absolute;
+  z-index: -1;                 /* behind the heading, text, and image */
+  pointer-events: none;        /* purely decorative — never catches clicks */
+
+  /* Size & placement: a wide shape sitting low, behind the dashboard */
+  width: min(960px, 86%);
+  aspect-ratio: 16 / 11;
+  left: 50%;
+  bottom: -40%;
+  transform: translateX(-50%);
+
+  /* Brand gradient: holds red to 55%, then ramps to magenta */
+  background: linear-gradient(105deg,
+    #E52636 0%,
+    #E52636 55%,
+    #D946EF 100%);
+
+  /* Organic "blob" silhouette (uneven corner radii) + heavy blur
+     so it reads as a soft glowing shape rather than a hard rectangle */
+  border-radius: 48% 52% 44% 56% / 60% 56% 44% 40%;
+  filter: blur(90px);
+  opacity: 0.45;
+}

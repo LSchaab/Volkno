@@ -132,6 +132,9 @@ p { line-height: var(--lh-base); }
 
 .btn .icon { width: 18px; height: 18px; }
 
+/* ---- Text weight utilities ---- */
+.fw-semibold { font-weight: var(--fw-semibold); } /* 600 */
+
 /* ---- Focus visibility (accessibility) ---- */
 :focus-visible {
   outline: 2px solid var(--color-accent);

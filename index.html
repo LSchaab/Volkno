@@ -34,7 +34,7 @@
       <!-- Everything on the right: links + the single CTA -->
       <div class="nav__right">
         <ul class="nav__links">
-          <li><a href="#top">About VolKno</a></li>
+          <li><a href="#about">About VolKno</a></li>
           <li><a href="#data">Our Product</a></li>
           <li><a href="#approach">Our Approach</a></li>
           <li><a href="#services">Our Tools</a></li>
@@ -88,13 +88,15 @@
     <!-- ============================================================
          2. INTRO / VALUE PROP
          ============================================================ -->
-    <section class="section bg-dark-soft">
+    <section class="section bg-dark-soft" id="about">
+      <!-- Decorative brand-gradient shape, sits behind the content -->
+      <div class="about__glow" aria-hidden="true"></div>
+
       <div class="container section-head">
         <h2>Bridging the gap between you and your audience</h2>
         <p class="lead">
-          The clearer your view of how people feel about your content, the
-          better every decision that follows — from the first cut to the
-          final release.
+          <span class="fw-semibold">VolKno is a Consumer Intelligence Platform that leverages AI</span> to capture the highest quality first party data
+          to answer domain specific business questions for our partners; <span class="fw-semibold">to optimize revenue and cut costs.</span>
         </p>
       </div>
       <div class="container">
@@ -107,26 +109,44 @@
     </section>
 
     <!-- ============================================================
-         3 + 4. LEVERAGING AI  (text + emotion chart)
+         3. LEVERAGING AI  (heading + 3 glass cards)
          ============================================================ -->
-    <section class="section">
-      <div class="container feature">
-        <div class="feature__body">
-          <p class="eyebrow">First-party data</p>
-          <h2 class="feature__title">Leveraging AI to capture the highest-quality first-party data</h2>
-          <p class="feature__text">
-            VolKno listens to real audience reactions and turns raw comments
-            into structured, emotional signal — so you can see not just what
-            people watched, but how they felt.
+    <section class="section glass-section">
+      <div class="container section-head">
+        <h2>Leveraging AI to capture the<br />highest quality first party data</h2>
+        <p class="lead">We are content and platform agnostic. <strong>Our first party data is:</strong></p>
+      </div>
+
+      <div class="container glass-grid">
+        <!-- Accurate -->
+        <article class="glass-card">
+          <div class="glass-card__icon"><img src="Resources/data_glass_icon.svg" alt="" /></div>
+          <h3 class="glass-card__title">Accurate</h3>
+          <p class="glass-card__text">
+            <strong>AI backed Mechanism Design ensures we capture the highest quality data</strong>
+            from the right subset of targeted users' and prevents them from "gaming the system".
           </p>
-        </div>
-        <figure class="feature__media">
-          <div class="media">
-            <img src="Resources/total_emotionality.svg"
-                 alt="Total emotionality breakdown chart" loading="lazy"
-                 width="365" height="410" />
-          </div>
-        </figure>
+        </article>
+
+        <!-- Relevant -->
+        <article class="glass-card">
+          <div class="glass-card__icon"><img src="Resources/thumb_up_glass_icon.svg" alt="" /></div>
+          <h3 class="glass-card__title">Relevant</h3>
+          <p class="glass-card__text">
+            <strong>Predictively accurate</strong> and correlates to our partners downstream
+            KPI's/ business decisions. High quality inputs.
+          </p>
+        </article>
+
+        <!-- Tactical -->
+        <article class="glass-card">
+          <div class="glass-card__icon"><img src="Resources/income_glass_icon.svg" alt="" /></div>
+          <h3 class="glass-card__title">Tactical</h3>
+          <p class="glass-card__text">
+            <strong>Accessible and actionable insights</strong> translate across stakeholders
+            and business units, driving tactical decisions to optimize revenue and reduce costs
+          </p>
+        </article>
       </div>
     </section>
 
@@ -135,21 +155,20 @@
          ============================================================ -->
     <section class="section bg-dark-glow">
       <div class="container feature feature--reverse">
-        <div class="feature__body">
-          <p class="eyebrow">Emotional intelligence</p>
-          <h2 class="feature__title">A real-time emotion lens for deep optimization</h2>
-          <p class="feature__text">
-            Track the full emotional arc of your content and pinpoint the exact
-            moments that delight, surprise, or lose your audience.
-          </p>
-        </div>
         <figure class="feature__media">
           <div class="media">
-            <img src="Resources/emotions_chart.svg"
-                 alt="Emotions over time chart" loading="lazy"
+            <img src="Resources/emotion_and_tags.svg"
+                 alt="Emotion and tags chart" loading="lazy"
                  width="229" height="394" />
           </div>
         </figure>
+        <div class="feature__body">
+          <h2 class="feature__title">AI and Machine Learning for data optimization</h2>
+          <p class="feature__text">
+            Leveraging AI-Backed Mechanism Design and Machine Learning techniques to efficiently collect,
+            interpret, and operationalize data.
+          </p>
+        </div>
       </div>
     </section>
 
@@ -159,40 +178,37 @@
     <section class="section">
       <div class="container feature">
         <div class="feature__body">
-          <p class="eyebrow">Know your audience</p>
-          <h2 class="feature__title">Partnering for unique solutions and measurable improvement</h2>
+          <h2 class="feature__title">Partnering for Unique Solutions and Measurable Results</h2>
           <p class="feature__text">
-            Understand platform preference and the top interest drivers behind
-            every segment — and turn those insights into content that performs.
+            We work with our partners to define unique decision problems and provide novel technical solutions
+            to produce measurable results that impact top and bottom line, i.e. - cut costs, optimize revenue.
           </p>
         </div>
         <figure class="feature__media">
           <div class="media">
-            <img src="Resources/platform_preference.svg"
-                 alt="Platform preference chart" loading="lazy"
+            <img src="Resources/lover_casual_hater.svg"
+                 alt="Lovers, Casuals, Haters chart" loading="lazy"
                  width="208" height="148" style="margin-bottom:1.5rem" />
-            <img src="Resources/top_interests_drivers.png"
-                 alt="Top interest drivers chart" loading="lazy"
-                 width="311" height="222" />
           </div>
         </figure>
       </div>
     </section>
 
-    <!-- ============================================================
-         8. DASHBOARD BENEFITS  (image slot — provide later)
-         ============================================================ -->
-    <section class="section bg-dark-soft">
-      <div class="container section-head">
-        <h2>Custom-tailored, fully integrated summaries</h2>
-        <p class="lead">A single view that ties every signal together.</p>
-      </div>
-      <div class="container">
-        <div class="media media--placeholder" style="aspect-ratio: 16 / 9;">
-          <div>
-            Dashboard summary image goes here<br />
-            <code>assets/images/dashboard-summary-2.png</code>
+    <section class="section bg-dark-glow">
+      <div class="container feature feature--reverse">
+        <figure class="feature__media">
+          <div class="media">
+            <img src="Resources/emotionality_surveyresults.svg"
+                 alt="Emotional drivers chart" loading="lazy"
+                 width="229" height="394" />
           </div>
+        </figure>
+        <div class="feature__body">
+          <h2 class="feature__title">AI and Machine Learning for data optimization</h2>
+          <p class="feature__text">
+            Leveraging AI-Backed Mechanism Design and Machine Learning techniques to efficiently collect,
+            interpret, and operationalize data.
+          </p>
         </div>
       </div>
     </section>
@@ -200,100 +216,420 @@
     <!-- ============================================================
          9 + 10. A DIFFERENTIATED APPROACH  (audience personas)
          ============================================================ -->
-    <section id="approach" class="section">
+    <section id="approach" class="section approach-light">
       <div class="container section-head">
-        <p class="eyebrow">Why VolKno</p>
         <h2>A Differentiated Approach</h2>
-        <p class="lead">
-          We don’t just count views. We classify your audience by how they
-          actually feel — from devoted Lovers to vocal Haters.
-        </p>
+        <p class="lead">Interactive research with Gamified Mechanics</p>
+        <a href="#contact" class="btn btn--dark">
+          Book A 15’ Call
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="4" width="18" height="18" rx="2" />
+            <path d="M16 2v4M8 2v4M3 10h18M12 14v4M10 16h4" />
+          </svg>
+        </a>
       </div>
-      <div class="container card-grid">
-        <article class="card">
-          <div class="card__icon"><img src="Resources/lover.svg" alt="" /></div>
-          <h3 class="card__title">Lovers</h3>
-          <p class="card__text">Your most enthusiastic, high-affinity audience — the people who advocate for your content.</p>
-        </article>
-        <article class="card">
-          <div class="card__icon"><img src="Resources/casual.svg" alt="" /></div>
-          <h3 class="card__title">Casuals</h3>
-          <p class="card__text">Engaged but undecided viewers — the segment with the most room to be won over.</p>
-        </article>
-        <article class="card">
-          <div class="card__icon"><img src="Resources/hater.svg" alt="" /></div>
-          <h3 class="card__title">Haters</h3>
-          <p class="card__text">Detractors whose objections, understood early, reveal exactly what to fix.</p>
-        </article>
-      </div>
-    </section>
 
-    <!-- ============================================================
-         11. FIRST-PARTY DATA  (stat row)
-         ============================================================ -->
-    <section id="data" class="section bg-dark-glow">
-      <div class="container section-head">
-        <p class="eyebrow">Built on real signal</p>
-        <h2>First-party data you actually own</h2>
-      </div>
-      <div class="container stats">
-        <div class="stat"><div class="stat__num">387</div><div class="stat__label">Respondents per study</div></div>
-        <div class="stat"><div class="stat__num">25k–50k</div><div class="stat__label">Segment size range</div></div>
-        <div class="stat"><div class="stat__num">100%</div><div class="stat__label">First-party, consented</div></div>
-      </div>
-    </section>
+      <div class="container bento">
+        <!-- Top wide card: text + respondent chart -->
+        <article class="bento-card bento-card--split bento__wide">
+          <div class="bento-card__body">
+            <h3 class="bento-card__title">Highest quality data standards</h3>
+            <p class="bento-card__text">
+              <strong>Our platform rewards users for quality responses</strong> and swiftly
+              detects any attempts to manipulate the system. We uphold the highest data
+              standards, ensuring insights align with partner KPIs. By prioritizing integrity
+              and quality, we empower partners with actionable data.
+            </p>
+          </div>
+          <div class="bento-card__media">
+            <img src="Resources/respondent_information.svg"
+                 alt="Respondent information broken down by age group" loading="lazy"
+                 width="660" height="350" />
+          </div>
+        </article>
 
-    <!-- ============================================================
-         12 + 13. ADVANCED SERVICES & APPLICATIONS  (icon card grid)
-         ============================================================ -->
-    <section id="services" class="section">
-      <div class="container section-head">
-        <h2>Integrate our Advanced Services and Applications into your project</h2>
-        <p class="lead">Pick the capabilities you need — and we’ll wire them into your workflow.</p>
-      </div>
-      <div class="container card-grid">
-        <article class="card">
-          <div class="card__icon"><img src="assets/icons/sentiment.svg" alt="" /></div>
-          <h3 class="card__title">Sentiment & Emotion</h3>
-          <p class="card__text">Turn open-ended comments into structured emotional signal at scale.</p>
-        </article>
-        <article class="card">
-          <div class="card__icon"><img src="assets/icons/data.svg" alt="" /></div>
-          <h3 class="card__title">Audience Segmentation</h3>
-          <p class="card__text">Group viewers by behavior, demographics, and affinity automatically.</p>
-        </article>
-        <article class="card">
-          <div class="card__icon"><img src="assets/icons/income.svg" alt="" /></div>
-          <h3 class="card__title">Monetization Insight</h3>
-          <p class="card__text">Connect content performance to the metrics that drive revenue.</p>
-        </article>
-      </div>
-    </section>
-
-    <!-- ============================================================
-         14. SOFTWARE DEVELOPMENT KIT  (image slot — provide later)
-         ============================================================ -->
-    <section id="sdk" class="section bg-dark-soft">
-      <div class="container feature">
-        <div class="feature__body">
-          <p class="eyebrow">For builders</p>
-          <h2 class="feature__title">Our software development kit</h2>
-          <p class="feature__text">
-            Drop VolKno’s insights straight into your own product with a
-            developer-friendly SDK and clear documentation.
+        <!-- Bottom-left card: gamified reactions -->
+        <article class="bento-card bento-card--corner">
+          <h3 class="bento-card__title">A fun, interactive and rewarding user experience</h3>
+          <p class="bento-card__text">
+            <strong>Gamified Research mechanics provide seamless data collection in real time</strong>
+            at scale. Fun, interactive and rewarding experience for our users.
           </p>
-          <div class="hero__actions">
-            <a href="#contact" class="btn btn--primary">Get access</a>
+          <div class="bento-card__media">
+            <img src="Resources/reactions.svg"
+                 alt="Emoji reactions: surprised, happy, sad, angry, loved it, liked it" loading="lazy"
+                 width="331" height="207" />
+          </div>
+        </article>
+
+        <!-- Bottom-right card: cost effective / tag it -->
+        <article class="bento-card bento-card--corner">
+          <h3 class="bento-card__title">Cost effective without sacrificing quality and speed</h3>
+          <p class="bento-card__text">
+            Our partners tell us: <strong>“We are better, faster and provide better unit economics</strong>
+            than any/all incumbents”.
+          </p>
+          <div class="bento-card__media">
+            <img src="Resources/tag_it.png"
+                 alt="Tag it interaction with sentiment tags like Hate It, Like It, Love It" loading="lazy"
+                 width="355" height="207" />
+          </div>
+        </article>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         CASE STUDIES  (split intro + interactive category grid)
+         ------------------------------------------------------------
+         Each clickable card opens a modal. The modals are driven by
+         pure CSS: a hidden checkbox per card (same trick as the nav
+         menu). Clicking the card = a <label> that ticks its checkbox
+         = the matching modal shows. Music / Politics / Sports /
+         Gaming are plain <div>s (no label), so they look the same but
+         aren't interactive yet.
+         ============================================================ -->
+    <section id="case-studies" class="section case-studies">
+
+      <!-- Modal toggles: one hidden checkbox per CLICKABLE card.
+           These sit before the modals so the ":checked ~ .modal"
+           sibling rule can find and reveal them. -->
+      <input type="checkbox" id="case-advertising" class="case-toggle sr-only" />
+      <input type="checkbox" id="case-creator" class="case-toggle sr-only" />
+      <input type="checkbox" id="case-filmtv" class="case-toggle sr-only" />
+
+      <div class="container case-studies__inner">
+
+        <!-- LEFT: intro copy -->
+        <div class="case-studies__intro">
+          <span class="pill">Case Studies</span>
+          <h2 class="case-studies__title">Enhancing Content through Real-Time Feedback</h2>
+          <p class="case-studies__text">
+            <strong>We dive deep into what the community likes / dislikes,</strong>
+            how it makes them feel, dictate where, when, how and why they want to consume it.
+          </p>
+        </div>
+
+        <!-- RIGHT: category card grid (6-col grid drives the 2/3/2 rows) -->
+        <div class="case-grid">
+
+          <!-- Clickable: Advertising -->
+          <label class="case-card case-card--adv" for="case-advertising">
+            <span class="case-card__expand" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M21 3l-7 7M9 21H3v-6M3 21l7-7"/></svg>
+            </span>
+            <span class="case-card__icon"><img src="Resources/advertising.svg" alt="" /></span>
+            <span class="case-card__label">Advertising</span>
+          </label>
+
+          <!-- Clickable: Creator Economy -->
+          <label class="case-card case-card--creator" for="case-creator">
+            <span class="case-card__expand" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M21 3l-7 7M9 21H3v-6M3 21l7-7"/></svg>
+            </span>
+            <span class="case-card__icon"><img src="Resources/creator_economy.svg" alt="" /></span>
+            <span class="case-card__label">Creator Economy</span>
+          </label>
+
+          <!-- Clickable: Film + TV -->
+          <label class="case-card case-card--filmtv" for="case-filmtv">
+            <span class="case-card__expand" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M21 3l-7 7M9 21H3v-6M3 21l7-7"/></svg>
+            </span>
+            <span class="case-card__icon"><img src="Resources/filmtv.svg" alt="" /></span>
+            <span class="case-card__label">Film + TV</span>
+          </label>
+
+          <!-- Disabled (not clickable yet): Music -->
+          <div class="case-card case-card--music is-disabled" aria-disabled="true">
+            <span class="case-card__expand" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M21 3l-7 7M9 21H3v-6M3 21l7-7"/></svg>
+            </span>
+            <span class="case-card__icon"><img src="Resources/music.svg" alt="" /></span>
+            <span class="case-card__label">Music</span>
+          </div>
+
+          <!-- Disabled: Politics -->
+          <div class="case-card case-card--politics is-disabled" aria-disabled="true">
+            <span class="case-card__expand" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M21 3l-7 7M9 21H3v-6M3 21l7-7"/></svg>
+            </span>
+            <span class="case-card__icon"><img src="Resources/politics.svg" alt="" /></span>
+            <span class="case-card__label">Politics</span>
+          </div>
+
+          <!-- Disabled: Sports -->
+          <div class="case-card case-card--sports is-disabled" aria-disabled="true">
+            <span class="case-card__expand" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M21 3l-7 7M9 21H3v-6M3 21l7-7"/></svg>
+            </span>
+            <span class="case-card__icon"><img src="Resources/sports.svg" alt="" /></span>
+            <span class="case-card__label">Sports</span>
+          </div>
+
+          <!-- Disabled: Gaming -->
+          <div class="case-card case-card--gaming is-disabled" aria-disabled="true">
+            <span class="case-card__expand" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M21 3l-7 7M9 21H3v-6M3 21l7-7"/></svg>
+            </span>
+            <span class="case-card__icon"><img src="Resources/gaming.svg" alt="" /></span>
+            <span class="case-card__label">Gaming</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ===== MODALS (one per clickable card) =====
+           Each modal has a full-screen backdrop <label> + a close
+           <label>; both point back at the same checkbox, so clicking
+           either un-ticks it and closes the modal. Swap the
+           placeholder copy + image slot when the content is ready. -->
+
+      <!-- Advertising modal -->
+      <div class="case-modal case-modal--adv" role="dialog" aria-modal="true" aria-labelledby="case-advertising-title">
+        <label class="case-modal__backdrop" for="case-advertising" aria-label="Close"></label>
+        <div class="case-modal__dialog">
+          <label class="case-modal__close" for="case-advertising" aria-label="Close">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+          </label>
+          <div class="case-modal__icon"><img src="Resources/advertising.svg" alt="" /></div>
+          <h3 class="case-modal__title" id="case-advertising-title">Advertising</h3>
+          <p class="case-modal__lead">
+            Placeholder copy — replace with the Advertising case study. Describe the
+            challenge, what VolKno measured, and the outcome for the partner.
+          </p>
+          <div class="media media--placeholder" style="aspect-ratio:16/9;">
+            <div>Advertising case study image / chart goes here</div>
           </div>
         </div>
-        <figure class="feature__media">
-          <div class="media media--placeholder" style="aspect-ratio: 4 / 3;">
-            <div>
-              SDK preview image goes here<br />
-              <code>assets/images/sdk-preview.png</code>
-            </div>
+      </div>
+
+      <!-- Creator Economy modal -->
+      <div class="case-modal case-modal--creator" role="dialog" aria-modal="true" aria-labelledby="case-creator-title">
+        <label class="case-modal__backdrop" for="case-creator" aria-label="Close"></label>
+        <div class="case-modal__dialog">
+          <label class="case-modal__close" for="case-creator" aria-label="Close">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+          </label>
+          <div class="case-modal__icon"><img src="Resources/creator_economy.svg" alt="" /></div>
+          <h3 class="case-modal__title" id="case-creator-title">Creator Economy</h3>
+          <p class="case-modal__lead">
+            Placeholder copy — replace with the Creator Economy case study. Describe the
+            challenge, what VolKno measured, and the outcome for the partner.
+          </p>
+          <div class="media media--placeholder" style="aspect-ratio:16/9;">
+            <div>Creator Economy case study image / chart goes here</div>
           </div>
-        </figure>
+        </div>
+      </div>
+
+      <!-- Film + TV modal -->
+      <div class="case-modal case-modal--filmtv" role="dialog" aria-modal="true" aria-labelledby="case-filmtv-title">
+        <label class="case-modal__backdrop" for="case-filmtv" aria-label="Close"></label>
+        <div class="case-modal__dialog">
+          <label class="case-modal__close" for="case-filmtv" aria-label="Close">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+          </label>
+          <div class="case-modal__icon"><img src="Resources/filmtv.svg" alt="" /></div>
+          <h3 class="case-modal__title" id="case-filmtv-title">Film + TV</h3>
+          <p class="case-modal__lead">
+            Placeholder copy — replace with the Film + TV case study. Describe the
+            challenge, what VolKno measured, and the outcome for the partner.
+          </p>
+          <div class="media media--placeholder" style="aspect-ratio:16/9;">
+            <div>Film + TV case study image / chart goes here</div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- ============================================================
+         ADVANCED SERVICES & APPLICATIONS  (light section, Lucide icons)
+         ------------------------------------------------------------
+         Icons are Lucide line icons painted with a single shared
+         red -> gold gradient. The gradient is defined once in the
+         hidden <svg> below; every icon references it via
+         stroke="url(#svc-grad)".
+         ============================================================ -->
+    <section id="advanced-services" class="section services-section">
+
+      <!-- Shared gradient for all Lucide icon strokes (FF1A51 -> F9CC56).
+           userSpaceOnUse + 0..24 coords = one continuous gradient across
+           every stroke of each 24x24 icon. -->
+      <svg width="0" height="0" aria-hidden="true" style="position:absolute" focusable="false">
+        <defs>
+          <linearGradient id="svc-grad" gradientUnits="userSpaceOnUse" x1="2" y1="2" x2="22" y2="22">
+            <stop offset="0" stop-color="#FF1A51" />
+            <stop offset="1" stop-color="#F9CC56" />
+          </linearGradient>
+        </defs>
+      </svg>
+
+      <div class="container section-head">
+        <h2>Integrate our Advanced Services and Applications to your project</h2>
+        <p class="lead">
+          Get detailed evaluation and targeting. We identify key drivers, segmenting
+          audiences, measuring engagement, and predicting market trends
+        </p>
+      </div>
+
+      <div class="container">
+
+        <!-- ----- EVALUATING ----- -->
+        <p class="svc-group-label">Evaluating</p>
+        <div class="svc-grid">
+
+          <!-- A: Identifying Interest Drivers (Lucide: view) -->
+          <article class="svc-card">
+            <span class="svc-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="url(#svc-grad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 17v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2" />
+                <path d="M21 7V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v2" />
+                <circle cx="12" cy="12" r="1" />
+                <path d="M18.944 12.33a1 1 0 0 0 0-.66 7.5 7.5 0 0 0-13.888 0 1 1 0 0 0 0 .66 7.5 7.5 0 0 0 13.888 0" />
+              </svg>
+            </span>
+            <h3 class="svc-card__title">Identifying Interest Drivers/ Deterrents to Consumption</h3>
+            <p class="svc-card__text">
+              <strong>Exploring the Story and Plot</strong>, Brand and Creators, Product Features
+              and Presentation, Characters and Acting, Themes and Motifs, Subject Matter and
+              Messaging, Pace and Tempo, Visual Style and Cinematography, Special Effects and CGI,
+              Music, and Editing.
+            </p>
+          </article>
+
+          <!-- B: Segmenting Audiences (Lucide: split) -->
+          <article class="svc-card">
+            <span class="svc-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="url(#svc-grad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M16 3h5v5" />
+                <path d="M8 3H3v5" />
+                <path d="M12 22v-8.3a4 4 0 0 0-1.172-2.872L3 3" />
+                <path d="m15 9 6-6" />
+              </svg>
+            </span>
+            <h3 class="svc-card__title">Segmenting Audiences with Precision</h3>
+            <p class="svc-card__text">
+              <strong>Analyzing Demographics</strong> (age, gender, ethnicity, income, education,
+              parental status, marital status, etc.), <strong>Psychographics</strong> (interests,
+              affinities, favorites, attitudes, opinions, lifestyle, values, loyalty, etc.),
+              <strong>Emotional Reactions</strong> (to products, content, messaging, etc.),
+              <strong>and Behavioral Patterns</strong> (interactions, views, plays, likes, shares,
+              sentiment, purchases, consumption, etc.)
+            </p>
+          </article>
+
+          <!-- C: Predicting Consumer Behavior (Lucide: wand-sparkles) — tall, spans 2 rows -->
+          <article class="svc-card svc-card--tall">
+            <span class="svc-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="url(#svc-grad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="m21.64 3.64-1.28-1.28a1.21 1.21 0 0 0-1.72 0L2.36 18.64a1.21 1.21 0 0 0 0 1.72l1.28 1.28a1.2 1.2 0 0 0 1.72 0L21.64 5.36a1.2 1.2 0 0 0 0-1.72" />
+                <path d="m14 7 3 3" />
+                <path d="M5 6v4" />
+                <path d="M19 14v4" />
+                <path d="M10 2v2" />
+                <path d="M7 8H3" />
+                <path d="M21 16h-4" />
+                <path d="M11 3H9" />
+              </svg>
+            </span>
+            <h3 class="svc-card__title">Predicting Consumer Behavior: From Usage to Revenue</h3>
+            <p class="svc-card__text">
+              <strong>From Usage, Purchases, and Demand to Consumption,</strong> Subscribers,
+              Viewership, CPV / CPC, Platform Preference, Social Sentiment / Velocity, Views,
+              Likes, Shares, Listens / Plays / Spins, Downloads, Conversions, and Revenue / ROI.
+            </p>
+          </article>
+
+          <!-- D: Identifying Audience and Targeting (Lucide: scan-face) -->
+          <article class="svc-card">
+            <span class="svc-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="url(#svc-grad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M3 7V5a2 2 0 0 1 2-2h2" />
+                <path d="M17 3h2a2 2 0 0 1 2 2v2" />
+                <path d="M21 17v2a2 2 0 0 1-2 2h-2" />
+                <path d="M7 21H5a2 2 0 0 1-2-2v-2" />
+                <path d="M8 14s1.5 2 4 2 4-2 4-2" />
+                <path d="M9 9h.01" />
+                <path d="M15 9h.01" />
+              </svg>
+            </span>
+            <h3 class="svc-card__title">Identifying Audience and Targeting</h3>
+            <p class="svc-card__text">
+              <strong>Categorizing Lovers</strong> (Fans / Super fans), <strong>Casuals</strong>
+              (on the fence / opportunity to convert), <strong>and Haters</strong> (don't waste
+              time + money trying to convert).
+            </p>
+          </article>
+
+          <!-- E: Measuring Market Dynamics (Lucide: pie-chart) -->
+          <article class="svc-card">
+            <span class="svc-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="url(#svc-grad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 12c.552 0 1.005-.449.95-.998a10 10 0 0 0-8.953-8.951c-.55-.055-.998.398-.998.95v8a1 1 0 0 0 1 1z" />
+                <path d="M21.21 15.89A10 10 0 1 1 8 2.83" />
+              </svg>
+            </span>
+            <h3 class="svc-card__title">Measuring Market Dynamics: From Attention to Advertising Impact</h3>
+            <p class="svc-card__text">
+              <strong>From Attention and Awareness to Affinity,</strong> Sentiment, Price
+              Sensitivity, Intent to View / Consume / Listen / Purchase, and Advertising /
+              Marketing Impact and Effectiveness.
+            </p>
+          </article>
+
+        </div>
+
+        <!-- ----- OPTIMIZING ----- -->
+        <p class="svc-group-label svc-group-label--gap">Optimizing</p>
+        <article class="svc-card svc-card--wide">
+          <span class="svc-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="url(#svc-grad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z" />
+              <path d="M20 2v4" />
+              <path d="M22 4h-4" />
+              <circle cx="4" cy="20" r="2" />
+            </svg>
+          </span>
+          <h3 class="svc-card__title">Refining Content and Marketing Strategies for Maximum Engagement and ROI</h3>
+          <p class="svc-card__text">
+            <strong>Emphasizing Creative,</strong> <strong>Advertising</strong> / Marketing,
+            <strong>Content Messaging,</strong> <strong>Format</strong> / Length,
+            <strong>Distribution</strong> (Platform / Audience / Library Synergy),
+            <strong>Partnerships</strong> (Brands / Influencers / Merchandise),
+            <strong>Converting Super fans</strong> / Fans / Casuals, Content Portfolio /
+            Platform Synergy, <strong>Licensing</strong> / Branding Opportunities,
+            <strong>Ad Spend</strong> / Media Buys, <strong>Audience Targeting,</strong> and
+            <strong>Pricing</strong> (Sensitivity / Elasticity / Purchases / ROI)
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SOFTWARE DEVELOPMENT KIT  (light section, partner logos)
+         ============================================================ -->
+    <section id="sdk-platforms" class="section services-section">
+      <div class="container section-head">
+        <h2>Our software development kit</h2>
+        <p class="lead text-center">
+          <strong>Integrates with partner platforms</strong> to get feedback directly from your
+          audiences wherever they may be.
+        </p>
+      </div>
+      <div class="container svc-logos">
+        <div class="svc-logo"><img src="Resources/shopify_logo.svg" alt="Shopify" /></div>
+        <div class="svc-logo"><img src="Resources/youtube_logo.svg" alt="YouTube" /></div>
+        <div class="svc-logo"><img src="Resources/vimeo_logo.svg" alt="Vimeo" /></div>
+        <div class="svc-logo"><img src="Resources/tiktok_logo.svg" alt="TikTok" /></div>
+        <div class="svc-logo"><img src="Resources/instagram_logo.svg" alt="Instagram" /></div>
+        <div class="svc-logo"><img src="Resources/zoom_logo.svg" alt="Zoom" /></div>
+        <div class="svc-logo"><img src="Resources/meet_logo.svg" alt="Google Meet" /></div>
+        <div class="svc-logo"><img src="Resources/patreon_logo.svg" alt="Patreon" /></div>
       </div>
     </section>
 

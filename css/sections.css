@@ -199,6 +199,456 @@
 .card__text { color: var(--text-on-dark-muted); font-size: var(--fs-small); line-height: var(--lh-loose); }
 
 /* ------------------------------------------------------------
+   GLASS CARD GRID  ("first party data is: Accurate / Relevant / Tactical")
+   Frosted-glass cards: translucent fill + backdrop blur + a lit
+   hairline edge. The SVG icons already carry their own glass look,
+   so they sit directly on the card (no icon tile here).
+   ------------------------------------------------------------ */
+
+/* A slightly larger, centered heading for this section.
+   The head is allowed to use the full content width so the two
+   forced lines have room (the default 760px box is too narrow
+   for this large type and would force extra wraps). */
+.glass-section .section-head { max-width: min(1040px, 100%); }
+.glass-section .section-head h2 {
+  font-size: clamp(2rem, 1.3rem + 3vw, 3rem);
+  line-height: var(--lh-tight);
+  text-wrap: balance;   /* even line lengths if it ever re-wraps */
+}
+/* Keep the supporting paragraph at a comfortable reading width */
+.glass-section .section-head .lead {
+  color: var(--text-on-dark-muted);
+  max-width: min(52ch, 100%);
+  margin-inline: auto;
+}
+.glass-section .section-head .lead strong { color: #fff; font-weight: var(--fw-bold); }
+
+.glass-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+}
+
+.glass-card {
+  position: relative;
+  isolation: isolate;             /* keeps the glow layer behind the content */
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+  /* 1) translucent fill so the page shows through */
+  background: linear-gradient(160deg, rgba(255,255,255,0.06), rgba(255,255,255,0.015));
+  /* 2) lit hairline edge */
+  border: 1px solid rgba(255,255,255,0.10);
+  /* 3) frost the background behind the card + soft top highlight & shadow */
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.10),
+    var(--shadow-card);
+  overflow: hidden;
+  transition: transform var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+/* faint colored glow in the top-left corner, behind icon + text */
+.glass-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(120% 80% at 0% 0%, rgba(157,123,224,0.14), transparent 58%);
+  pointer-events: none;
+}
+.glass-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255,255,255,0.22);
+}
+.glass-card__icon { width: 48px; height: 48px; }
+.glass-card__icon img { width: 100%; height: 100%; object-fit: contain; }
+.glass-card__title { font-size: var(--fs-h3); font-weight: var(--fw-bold); }
+.glass-card__text {
+  color: var(--text-on-dark-muted);
+  font-size: var(--fs-small);
+  line-height: var(--lh-loose);
+}
+.glass-card__text strong { color: #fff; font-weight: var(--fw-bold); }
+
+/* Stack to one column on small screens */
+@media (max-width: 860px) {
+  .glass-grid { grid-template-columns: 1fr; }
+}
+
+/* ------------------------------------------------------------
+   "A DIFFERENTIATED APPROACH" — LIGHT BENTO SECTION
+   ------------------------------------------------------------
+   A light (white) section dropped into the dark page. Because the
+   global default text color is white-on-dark, we flip text to dark
+   inside this section. Layout is a "bento" grid: one wide card on
+   top, two cards side-by-side below.
+   ------------------------------------------------------------ */
+.approach-light {
+  background: #f4f5fa;            /* light cool-white surface */
+  color: var(--color-ink);       /* dark text for the whole section */
+}
+.approach-light .section-head h2   { color: var(--color-ink); }
+.approach-light .section-head .lead { color: var(--text-muted); }
+.approach-light .section-head .btn  { margin-top: var(--space-2); }
+
+/* Dark CTA button (black bg / white text) for use on light backgrounds */
+.btn--dark { background-color: var(--color-ink); color: #fff; }
+.btn--dark:hover { background-color: #000; }
+
+/* Bento grid: 2 columns; the wide card spans both */
+.bento {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+}
+.bento__wide { grid-column: 1 / -1; }
+
+/* Shared card shell */
+.bento-card {
+  position: relative;
+  background: #fff;
+  border: 1px solid rgba(11, 18, 21, 0.10);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+  overflow: hidden;              /* clips images that bleed to the corner */
+}
+.bento-card__title {
+  font-size: clamp(1.25rem, 1rem + 1vw, 1.6rem);
+  color: var(--color-ink);
+  margin-bottom: var(--space-2);
+}
+.bento-card__text {
+  color: var(--text-muted-2);    /* #53555a — medium gray body text */
+  font-size: var(--fs-small);
+  line-height: var(--lh-loose);
+}
+.bento-card__text strong { color: var(--color-ink); font-weight: var(--fw-bold); }
+
+/* Top wide card: text on the left, chart image on the right.
+   Trimmed vertical padding so the card sits shorter (the chart keeps
+   its full size — only the top/bottom breathing room is reduced). */
+.bento-card--split {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: clamp(1.5rem, 1rem + 3vw, 3rem);
+  align-items: center;
+  padding-block: clamp(1rem, 0.5rem + 1vw, 1.5rem);
+}
+.bento-card--split .bento-card__media img { width: 100%; height: auto; }
+
+/* Bottom cards: text on the left, image anchored to the bottom-right
+   corner (and clipped by the card's overflow: hidden). */
+.bento-card--corner { min-height: 320px; }
+.bento-card--corner .bento-card__title { max-width: 80%; }
+.bento-card--corner .bento-card__text  { max-width: 50%; }
+.bento-card--corner .bento-card__media {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 48%;
+  max-width: 340px;
+}
+.bento-card--corner .bento-card__media img {
+  width: 100%;
+  height: auto;
+  border-top-left-radius: var(--radius-md);  /* soft inner corner where it meets the card */
+}
+
+/* Stack everything on small screens (image drops below the text) */
+@media (max-width: 760px) {
+  .bento { grid-template-columns: 1fr; }
+  .bento-card--split { grid-template-columns: 1fr; }
+  .bento-card--corner { min-height: 0; }
+  .bento-card--corner .bento-card__title,
+  .bento-card--corner .bento-card__text { max-width: 100%; }
+  .bento-card--corner .bento-card__media {
+    position: static;
+    width: 100%;
+    max-width: 360px;
+    margin-top: var(--space-3);
+  }
+}
+
+/* ------------------------------------------------------------
+   CASE STUDIES — split intro + interactive category grid
+   ------------------------------------------------------------
+   Left = intro copy. Right = a frosted-glass category grid.
+   Three cards open a pure-CSS modal (toggled by hidden checkboxes,
+   the same trick the mobile nav uses); four are muted + inert.
+   ------------------------------------------------------------ */
+
+/* Two-column split: intro on the left, card grid on the right */
+.case-studies__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  gap: clamp(2rem, 1rem + 5vw, 5rem);
+  align-items: center;
+}
+
+.case-studies__intro { max-width: 42ch; }
+.case-studies__title {
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-tight);
+  margin: var(--space-3) 0;
+  text-wrap: balance;
+}
+.case-studies__text { color: var(--text-on-dark-muted); line-height: var(--lh-loose); }
+.case-studies__text strong { color: #fff; font-weight: var(--fw-bold); }
+
+/* Outlined pill badge ("Case Studies") */
+.pill {
+  display: inline-block;
+  padding: 8px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 999px;
+  font-size: var(--fs-small);
+  font-weight: var(--fw-bold);
+  color: #fff;
+}
+
+/* 6-column grid produces the irregular 2 / 3 / 2 rows */
+.case-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: var(--space-3);
+}
+.case-card--adv      { grid-column: span 3; }
+.case-card--creator  { grid-column: span 3; }
+.case-card--filmtv   { grid-column: span 2; }
+.case-card--music    { grid-column: span 2; }
+.case-card--politics { grid-column: span 2; }
+.case-card--sports   { grid-column: span 3; }
+.case-card--gaming   { grid-column: span 3; }
+
+/* Glass card shell (same frosted recipe as .glass-card) */
+.case-card {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 150px;
+  padding: var(--space-4) var(--space-3);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.015));
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.10),
+    var(--shadow-card);
+  color: #fff;
+  text-align: center;
+  cursor: pointer;
+  transition: transform var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+.case-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255, 255, 255, 0.24);
+}
+.case-card__icon { width: 52px; height: 52px; }
+.case-card__icon img { width: 100%; height: 100%; object-fit: contain; }
+.case-card__label { font-size: var(--fs-h3); font-weight: var(--fw-semibold); }
+
+/* Expand glyph, parked in the top-right corner */
+.case-card__expand {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 18px;
+  height: 18px;
+  color: rgba(255, 255, 255, 0.55);
+  transition: color var(--dur) var(--ease);
+}
+.case-card__expand svg { width: 100%; height: 100%; }
+.case-card:hover .case-card__expand { color: #fff; }
+
+/* Disabled cards: same glass shell, muted + non-interactive */
+.case-card.is-disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+.case-card.is-disabled:hover {
+  transform: none;
+  border-color: rgba(255, 255, 255, 0.10);
+}
+
+/* ---- Pure-CSS modal ----
+   Hidden by default; a checked toggle (its matching checkbox) flips
+   the sibling modal to display:flex. */
+.case-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-3);
+}
+#case-advertising:checked ~ .case-modal--adv,
+#case-creator:checked ~ .case-modal--creator,
+#case-filmtv:checked ~ .case-modal--filmtv {
+  display: flex;
+}
+
+/* Dimmed, blurred backdrop — clicking it closes the modal */
+.case-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(5, 8, 10, 0.7);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  cursor: pointer;
+}
+
+/* The dialog panel itself */
+.case-modal__dialog {
+  position: relative;
+  width: min(640px, 100%);
+  max-height: 85vh;
+  overflow-y: auto;
+  background: var(--color-surface);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-xl);
+  padding: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+  box-shadow: var(--shadow-card);
+}
+.case-modal__close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  cursor: pointer;
+  transition: background-color var(--dur) var(--ease);
+}
+.case-modal__close:hover { background: rgba(255, 255, 255, 0.16); }
+.case-modal__close svg { width: 18px; height: 18px; }
+.case-modal__icon { width: 56px; height: 56px; margin-bottom: var(--space-2); }
+.case-modal__icon img { width: 100%; height: 100%; object-fit: contain; }
+.case-modal__title { font-size: var(--fs-h2); font-weight: var(--fw-bold); }
+.case-modal__lead {
+  color: var(--text-on-dark-muted);
+  line-height: var(--lh-loose);
+  margin: var(--space-2) 0 var(--space-3);
+}
+
+/* Tablet: stack intro above the grid */
+@media (max-width: 900px) {
+  .case-studies__inner { grid-template-columns: 1fr; }
+  .case-studies__intro { max-width: 60ch; }
+}
+
+/* Small screens: even 2-up grid, every card the same width */
+@media (max-width: 620px) {
+  .case-grid { grid-template-columns: repeat(2, 1fr); }
+  .case-card { grid-column: span 1 !important; }
+}
+
+/* ------------------------------------------------------------
+   ADVANCED SERVICES & SDK — light sections, Lucide gradient icons
+   ------------------------------------------------------------
+   Light (off-white) surface dropped into the dark page. Cards are
+   white with a hairline border; icons are Lucide line icons stroked
+   with the shared #svc-grad red->gold gradient.
+   ------------------------------------------------------------ */
+.services-section {
+  background: #f5f5fa;           /* soft off-white lavender surface */
+  color: var(--color-ink);
+}
+.services-section .section-head { max-width: 760px; }
+.services-section .section-head h2   { color: var(--color-ink); }
+.services-section .section-head .lead { color: var(--text-muted); margin-inline: auto; }
+.services-section .section-head .lead strong { color: var(--color-ink); font-weight: var(--fw-bold); }
+
+/* "Evaluating" / "Optimizing" group labels */
+.svc-group-label {
+  text-align: center;
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-semibold);
+  color: var(--color-ink);
+  margin-bottom: var(--space-4);
+}
+/* Extra breathing room above the "Optimizing" label */
+.svc-group-label--gap { margin-top: var(--space-6); }
+
+/* 3-column grid; the tall card spans both rows of the right column */
+.svc-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+  align-items: stretch;
+}
+.svc-card--tall { grid-column: 3; grid-row: 1 / span 2; }
+
+/* Shared card shell */
+.svc-card {
+  background: #fff;
+  border: 1px solid rgba(11, 18, 21, 0.10);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.5rem, 1rem + 1.5vw, 2rem);
+}
+.svc-card--wide { width: 100%; }
+
+.svc-card__icon { display: block; width: 30px; height: 30px; margin-bottom: var(--space-3); }
+.svc-card__icon svg { width: 100%; height: 100%; }
+
+.svc-card__title {
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-bold);
+  color: var(--color-ink);
+  line-height: var(--lh-snug);
+  margin-bottom: var(--space-2);
+}
+.svc-card__text {
+  font-size: var(--fs-small);
+  line-height: var(--lh-loose);
+  color: var(--text-muted-2);
+}
+.svc-card__text strong { color: var(--color-ink); font-weight: var(--fw-bold); }
+
+/* SDK partner-logo chips */
+.svc-logos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-3);
+}
+.svc-logo {
+  width: 64px;
+  height: 64px;
+  display: grid;
+  place-items: center;
+  background: #fff;
+  border: 1px solid rgba(11, 18, 21, 0.08);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
+}
+.svc-logo img { width: 34px; height: 34px; object-fit: contain; }
+
+/* Tablet: 2 columns, tall card returns to normal flow */
+@media (max-width: 900px) {
+  .svc-grid { grid-template-columns: repeat(2, 1fr); }
+  .svc-card--tall { grid-column: auto; grid-row: auto; }
+}
+/* Mobile: single column */
+@media (max-width: 600px) {
+  .svc-grid { grid-template-columns: 1fr; }
+}
+
+/* ------------------------------------------------------------
    STAT / METRIC ROW
    ------------------------------------------------------------ */
 .stats { display: flex; flex-wrap: wrap; gap: var(--space-5); justify-content: center; }
