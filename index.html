@@ -76,11 +76,38 @@
           </a>
         </div>
 
-        <!-- Hero product screenshot (real asset) -->
+        <!-- Hero product screenshot (real asset).
+             The dashboard is the centre anchor; smaller "chips" animate in
+             around it on page load to make the composition build itself. -->
         <figure class="hero__media">
-          <img src="Resources/VolKno_dahsboard.svg"
-               alt="VolKno analytics dashboard showing audience sentiment and segments"
-               width="858" height="654" />
+          <div class="hero__stage">
+
+            <!-- Sits BEHIND the dashboard and peeks out on the left -->
+            <img class="hero__float hero__float--emotionality"
+                 src="Resources/total_emotionality.svg" alt="" aria-hidden="true" />
+
+            <!-- The big dashboard, the anchor everything else builds around -->
+            <img class="hero__dashboard"
+                 src="Resources/VolKno_dahsboard.svg"
+                 alt="VolKno analytics dashboard showing audience sentiment and segments"
+                 width="858" height="654" />
+
+            <!-- LEFT side floats -->
+            <img class="hero__float hero__float--platform"
+                 src="Resources/platform_preference.svg" alt="" aria-hidden="true" />
+            <img class="hero__float hero__float--interest"
+                 src="Resources/top_interests_drivers.png" alt="" aria-hidden="true" />
+
+            <!-- RIGHT side floats -->
+            <img class="hero__float hero__float--emotion"
+                 src="Resources/emotions_chart.svg" alt="" aria-hidden="true" />
+            <img class="hero__float hero__float--lover"
+                 src="Resources/lover.svg" alt="" aria-hidden="true" />
+            <img class="hero__float hero__float--casual"
+                 src="Resources/casual.svg" alt="" aria-hidden="true" />
+            <img class="hero__float hero__float--hater"
+                 src="Resources/hater.svg" alt="" aria-hidden="true" />
+          </div>
         </figure>
       </div>
     </section>
@@ -111,7 +138,7 @@
     <!-- ============================================================
          3. LEVERAGING AI  (heading + 3 glass cards)
          ============================================================ -->
-    <section class="section glass-section">
+    <section id="data" class="section glass-section">
       <div class="container section-head">
         <h2>Leveraging AI to capture the<br />highest quality first party data</h2>
         <p class="lead">We are content and platform agnostic. <strong>Our first party data is:</strong></p>
@@ -390,17 +417,62 @@
       <div class="case-modal case-modal--adv" role="dialog" aria-modal="true" aria-labelledby="case-advertising-title">
         <label class="case-modal__backdrop" for="case-advertising" aria-label="Close"></label>
         <div class="case-modal__dialog">
+          <div class="case-modal__wash" aria-hidden="true"></div>
           <label class="case-modal__close" for="case-advertising" aria-label="Close">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="4 14 10 14 10 20"/><polyline points="20 10 14 10 14 4"/><line x1="14" y1="10" x2="21" y2="3"/><line x1="3" y1="21" x2="10" y2="14"/>
+            </svg>
           </label>
-          <div class="case-modal__icon"><img src="Resources/advertising.svg" alt="" /></div>
-          <h3 class="case-modal__title" id="case-advertising-title">Advertising</h3>
-          <p class="case-modal__lead">
-            Placeholder copy — replace with the Advertising case study. Describe the
-            challenge, what VolKno measured, and the outcome for the partner.
-          </p>
-          <div class="media media--placeholder" style="aspect-ratio:16/9;">
-            <div>Advertising case study image / chart goes here</div>
+
+          <div class="case-modal__grid">
+            <div class="case-modal__main">
+              <span class="case-modal__tag">Advertising</span>
+              <h3 class="case-modal__title" id="case-advertising-title">Teaming with a top CPG company to optimize marketing and boost sales for a new non-toxic bug repellent</h3>
+              <p class="case-modal__overview">
+                Vol<strong>K</strong>no partnered with a leading CPG company on the launch of a new
+                non-toxic bug repellent. <strong>Their goal was to evaluate and optimize their creative
+                marketing content, identify and target the right consumer segments</strong> with the right
+                marketing content, optimize their ad spend/media buys and drive more omni-channel
+                purchases/sales of this product, online and offline.
+              </p>
+              <figure class="case-modal__chart">
+                <img src="Resources/respondent_information_advertising.svg"
+                     alt="Respondent information chart broken down by age group" loading="lazy" />
+              </figure>
+            </div>
+
+            <aside class="case-modal__side">
+              <div class="case-modal__block">
+                <p class="case-modal__block-label">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>
+                  Methodology
+                </p>
+                <p class="case-modal__block-text">
+                  Vol<strong>K</strong>no tested 5 video ads and 8 pieces of key art with a sample of 1329
+                  respondents on the VolKno platform. Custom profiling was executed to identify emotional,
+                  behavioral demographic and psychographic attributes of consumers’ who were best positioned
+                  to purchase a bug repellant in the next 3 months and were willing to pay a premium for a
+                  non toxic repellent.
+                </p>
+              </div>
+              <hr class="case-modal__divider" />
+              <div class="case-modal__block">
+                <p class="case-modal__block-label">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>
+                  Results
+                </p>
+                <p class="case-modal__block-text">
+                  <strong>We identified the 2 top performing creative/video assets and 3 key art that were
+                  best positioned to drive conversions/purchases and the top audiences primed for
+                  conversion</strong>; parents &lt; 47 with children &lt; 13 and pet owners; who live in the
+                  northeast and midwest and make $55K+ annually. <strong>Other detailed targeting parameters
+                  were identified and leveraged to optimize ad spend/media buys and drive purchases to several
+                  major online retailers/e-commerce sites, resulting in a net 138% increase in sales</strong>
+                  of this product across Amazon.com, Target.com and Walmart.com, as compared to the previous
+                  product launch of the same brand, executed 6 months prior.
+                </p>
+              </div>
+            </aside>
           </div>
         </div>
       </div>
@@ -409,17 +481,68 @@
       <div class="case-modal case-modal--creator" role="dialog" aria-modal="true" aria-labelledby="case-creator-title">
         <label class="case-modal__backdrop" for="case-creator" aria-label="Close"></label>
         <div class="case-modal__dialog">
+          <div class="case-modal__wash" aria-hidden="true"></div>
           <label class="case-modal__close" for="case-creator" aria-label="Close">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="4 14 10 14 10 20"/><polyline points="20 10 14 10 14 4"/><line x1="14" y1="10" x2="21" y2="3"/><line x1="3" y1="21" x2="10" y2="14"/>
+            </svg>
           </label>
-          <div class="case-modal__icon"><img src="Resources/creator_economy.svg" alt="" /></div>
-          <h3 class="case-modal__title" id="case-creator-title">Creator Economy</h3>
-          <p class="case-modal__lead">
-            Placeholder copy — replace with the Creator Economy case study. Describe the
-            challenge, what VolKno measured, and the outcome for the partner.
-          </p>
-          <div class="media media--placeholder" style="aspect-ratio:16/9;">
-            <div>Creator Economy case study image / chart goes here</div>
+
+          <div class="case-modal__grid">
+            <div class="case-modal__main">
+              <span class="case-modal__tag">Creator Economy</span>
+              <h3 class="case-modal__title" id="case-creator-title">VolKno's Predictive Model Drives Influencer Marketing Success for QSR Brand's Summer Menu Launch</h3>
+              <p class="case-modal__overview">
+                Vol<strong>K</strong>no partnered with a leading influencer marketing company on the launch of
+                a new influencer marketing campaign for a QSR brand with 100 retail locations.
+                <strong>The goal was to identify the top influencers/creators best positioned to drive
+                awareness and sales</strong> for the restaurant on its launch of several new menu items being
+                released and promoted for the summer. The QSR restaurant offered a bonus to the influencer
+                marketing company and the respective influencer, if any of the content released went viral,
+                resulting in 10M+ impressions/views.
+              </p>
+              <figure class="case-modal__chart">
+                <img src="Resources/total_emotionality_economy.svg"
+                     alt="Total emotionality radar chart for the campaign content" loading="lazy" />
+              </figure>
+            </div>
+
+            <aside class="case-modal__side">
+              <div class="case-modal__block">
+                <p class="case-modal__block-label">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>
+                  Methodology
+                </p>
+                <p class="case-modal__block-text">
+                  Vol<strong>K</strong>no initially tested a total of 33 short form videos from a sample of 8
+                  influencers provided by the influencer marketing company. <strong>Of the 8
+                  influencers/creators, we identified the top 3 best aligned with the QSR company’s brand and
+                  their target audience.</strong> The top 3 creators were required to create 5 pieces of
+                  original content each for the brand, with specific parameters designated by the QSR brand.
+                  <strong>Once complete, we tested all 15 pieces of content on the VolKno platform, with a
+                  curated panel of respondents that matched detailed targeting parameters provided by the QSR
+                  brand from their CRM data.</strong> We leveraged a custom predictive model to predict social
+                  sentiment and velocity to TikTok, to better understand what people would think and say about
+                  the content prior to release so the influencers/creators could tweak any messaging if
+                  necessary and better position their content for success. We identified one video out of the
+                  15 that we predicted would do between 9-12M views on TikTok, hitting the bonus requirement
+                  for the influencer, their agency and the QSR brand.
+                </p>
+              </div>
+              <hr class="case-modal__divider" />
+              <div class="case-modal__block">
+                <p class="case-modal__block-label">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>
+                  Results
+                </p>
+                <p class="case-modal__block-text">
+                  The video we predicted would do 9-12M views on TikTok, generated 11.2M views, hitting the
+                  bonus quota. The campaign was highly successful generating a total of 117.3M+ views across
+                  TikTok, Instagram and YouTube. Awareness for the new product offering increased 21.5% pre
+                  and post launch, from 42.3% to 63.8% and Q3 sales rose by 17.2%.
+                </p>
+              </div>
+            </aside>
           </div>
         </div>
       </div>
@@ -428,17 +551,56 @@
       <div class="case-modal case-modal--filmtv" role="dialog" aria-modal="true" aria-labelledby="case-filmtv-title">
         <label class="case-modal__backdrop" for="case-filmtv" aria-label="Close"></label>
         <div class="case-modal__dialog">
+          <div class="case-modal__wash" aria-hidden="true"></div>
           <label class="case-modal__close" for="case-filmtv" aria-label="Close">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="4 14 10 14 10 20"/><polyline points="20 10 14 10 14 4"/><line x1="14" y1="10" x2="21" y2="3"/><line x1="3" y1="21" x2="10" y2="14"/>
+            </svg>
           </label>
-          <div class="case-modal__icon"><img src="Resources/filmtv.svg" alt="" /></div>
-          <h3 class="case-modal__title" id="case-filmtv-title">Film + TV</h3>
-          <p class="case-modal__lead">
-            Placeholder copy — replace with the Film + TV case study. Describe the
-            challenge, what VolKno measured, and the outcome for the partner.
-          </p>
-          <div class="media media--placeholder" style="aspect-ratio:16/9;">
-            <div>Film + TV case study image / chart goes here</div>
+
+          <div class="case-modal__grid">
+            <div class="case-modal__main">
+              <span class="case-modal__tag">Film + Tv</span>
+              <h3 class="case-modal__title" id="case-filmtv-title">Enhancing TV Show Success with VolKno's Predictive Viewership Model</h3>
+              <p class="case-modal__overview">
+                A leading studio partner came to us to build a <strong>predictive model to viewership, season
+                momentum and decay</strong>, so they could better understand <strong>how their content would
+                perform</strong> prior to release and when to cancel shows +/or increase marketing spend.
+              </p>
+              <figure class="case-modal__chart">
+                <img src="Resources/filmtv_lover_card.png"
+                     alt="Lover, Hater and Casual audience segment cards" loading="lazy" />
+              </figure>
+            </div>
+
+            <aside class="case-modal__side">
+              <div class="case-modal__block">
+                <p class="case-modal__block-label">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>
+                  Methodology
+                </p>
+                <p class="case-modal__block-text">
+                  Latent Semantic Analysis (LSA) was applied to a curated set of Gracenote content tags, iMDB
+                  plot keywords and genres relevant to each title and used to generate embeddings for each
+                  title. Title embeddings were clustered with a hierarchical agglomerative approach.
+                  <strong>Nielsen viewership data was used to identify top performing titles by
+                  platform.</strong> Titles were analyzed by cluster, performance, social and Vol<strong>K</strong>no
+                  user data to identify common attributes that contribute to success / failure and identify
+                  macro concepts and trends.
+                </p>
+              </div>
+              <hr class="case-modal__divider" />
+              <div class="case-modal__block">
+                <p class="case-modal__block-label">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>
+                  Results
+                </p>
+                <p class="case-modal__block-text">
+                  Model yielded 84.2% predictive accuracy to Nielsen viewership data. Vol<strong>K</strong>no
+                  user response data increased predictive accuracy by over 20%.
+                </p>
+              </div>
+            </aside>
           </div>
         </div>
       </div>
@@ -608,60 +770,76 @@
         </article>
 
       </div>
-    </section>
 
-    <!-- ============================================================
-         SOFTWARE DEVELOPMENT KIT  (light section, partner logos)
-         ============================================================ -->
-    <section id="sdk-platforms" class="section services-section">
-      <div class="container section-head">
-        <h2>Our software development kit</h2>
-        <p class="lead text-center">
-          <strong>Integrates with partner platforms</strong> to get feedback directly from your
-          audiences wherever they may be.
-        </p>
-      </div>
-      <div class="container svc-logos">
-        <div class="svc-logo"><img src="Resources/shopify_logo.svg" alt="Shopify" /></div>
-        <div class="svc-logo"><img src="Resources/youtube_logo.svg" alt="YouTube" /></div>
-        <div class="svc-logo"><img src="Resources/vimeo_logo.svg" alt="Vimeo" /></div>
-        <div class="svc-logo"><img src="Resources/tiktok_logo.svg" alt="TikTok" /></div>
-        <div class="svc-logo"><img src="Resources/instagram_logo.svg" alt="Instagram" /></div>
-        <div class="svc-logo"><img src="Resources/zoom_logo.svg" alt="Zoom" /></div>
-        <div class="svc-logo"><img src="Resources/meet_logo.svg" alt="Google Meet" /></div>
-        <div class="svc-logo"><img src="Resources/patreon_logo.svg" alt="Patreon" /></div>
+      <!-- ----------------------------------------------------------
+           SOFTWARE DEVELOPMENT KIT  (partner logos)
+           Same light section as Advanced Services — kept as one block
+           so the background is continuous and only the content reveals.
+           ---------------------------------------------------------- -->
+      <div id="sdk-platforms" class="sdk-block">
+        <div class="container section-head">
+          <h2>Our software development kit</h2>
+          <p class="lead text-center">
+            <strong>Integrates with partner platforms</strong> to get feedback directly from your
+            audiences wherever they may be.
+          </p>
+        </div>
+        <div class="container svc-logos">
+          <div class="svc-logo"><img src="Resources/shopify_logo.svg" alt="Shopify" /></div>
+          <div class="svc-logo"><img src="Resources/youtube_logo.svg" alt="YouTube" /></div>
+          <div class="svc-logo"><img src="Resources/vimeo_logo.svg" alt="Vimeo" /></div>
+          <div class="svc-logo"><img src="Resources/tiktok_logo.svg" alt="TikTok" /></div>
+          <div class="svc-logo"><img src="Resources/instagram_logo.svg" alt="Instagram" /></div>
+          <div class="svc-logo"><img src="Resources/zoom_logo.svg" alt="Zoom" /></div>
+          <div class="svc-logo"><img src="Resources/meet_logo.svg" alt="Google Meet" /></div>
+          <div class="svc-logo"><img src="Resources/patreon_logo.svg" alt="Patreon" /></div>
+        </div>
       </div>
     </section>
 
     <!-- ============================================================
          15. CONTACT / CTA + FOOTER
          ============================================================ -->
-    <section id="contact" class="section bg-dark-glow">
-      <div class="container cta">
-        <p class="eyebrow">Get started</p>
-        <h2>Let’s evaluate and optimize your content</h2>
-        <p class="lead text-center">
-          Tell us about your project and we’ll show you what VolKno sees in
-          your audience.
-        </p>
+    <section id="contact" class="section bg-dark-glow contact-section">
+      <div class="container contact__inner">
 
-        <!-- Markup + styling only. Wiring this to email/a backend is a
-             separate task (see README). -->
-        <form class="contact-form" action="#" method="post">
-          <div class="field">
-            <label for="cf-name">Name</label>
-            <input id="cf-name" name="name" type="text" autocomplete="name" required />
+        <!-- LEFT: heading + supporting copy -->
+        <div class="contact__intro">
+          <h2 class="contact__title">Define your business questions/pain points today and let’s get started!</h2>
+          <p class="contact__text">
+            Whether you have questions about our services, need detailed information, or
+            require personalized assistance, our team is ready to assist you.
+          </p>
+        </div>
+
+        <!-- RIGHT: two-panel booking card.
+             Left panel = the "Product Demo" info; right panel = the
+             contact form (this is where the calendar sits in the mock). -->
+        <div class="booking-card">
+
+          <!-- The form (replaces the calendar) -->
+          <div class="booking-card__form">
+            <h3 class="booking-card__form-title">Tell us about your project</h3>
+            <!-- Markup + styling only. Wiring this to email/a backend is a
+                 separate task (see README). -->
+            <form class="booking-form" action="#" method="post">
+              <div class="field">
+                <label for="cf-name">Name</label>
+                <input id="cf-name" name="name" type="text" autocomplete="name" required />
+              </div>
+              <div class="field">
+                <label for="cf-email">Work email</label>
+                <input id="cf-email" name="email" type="email" autocomplete="email" required />
+              </div>
+              <div class="field">
+                <label for="cf-msg">What would you like to optimize?</label>
+                <textarea id="cf-msg" name="message"></textarea>
+              </div>
+              <button type="submit" class="btn btn--dark">Book a 15’ call</button>
+            </form>
           </div>
-          <div class="field">
-            <label for="cf-email">Work email</label>
-            <input id="cf-email" name="email" type="email" autocomplete="email" required />
-          </div>
-          <div class="field">
-            <label for="cf-msg">What would you like to optimize?</label>
-            <textarea id="cf-msg" name="message"></textarea>
-          </div>
-          <button type="submit" class="btn btn--primary">Book a 15’ call</button>
-        </form>
+
+        </div>
       </div>
     </section>
   </main>
@@ -671,19 +849,82 @@
        ============================================================ -->
   <footer class="footer">
     <div class="footer__inner container">
-      <a class="footer__logo" href="#top" aria-label="VolKno home">
-        <img src="assets/logo/volkno-logo.png" alt="VolKno" />
-      </a>
       <ul class="footer__links">
-        <li><a href="#approach">Approach</a></li>
-        <li><a href="#data">First-Party Data</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#sdk">SDK</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#">Terms Of Use</a></li>
+        <li aria-hidden="true" class="footer__sep">|</li>
+        <li><a href="#">Privacy Policy</a></li>
       </ul>
-      <p class="footer__copy">© 2024 VolKno. All rights reserved.</p>
+      <p class="footer__copy">VolKno Inc, Copyright 2024</p>
     </div>
   </footer>
+
+  <!-- Hero entrance: build the composition the FIRST time it scrolls into view.
+       IntersectionObserver tells us the moment the hero stage is on screen;
+       we add `.is-visible` to start the CSS animation, then stop watching so it
+       plays exactly once and keeps its final position forever after. -->
+  <script>
+    (function () {
+      var stage = document.querySelector('.hero__stage');
+      if (!stage) return;
+
+      // No IntersectionObserver support? Just show it built.
+      if (!('IntersectionObserver' in window)) {
+        stage.classList.add('is-visible');
+        return;
+      }
+
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            stage.classList.add('is-visible');  // play once...
+            observer.disconnect();              // ...then never again
+          }
+        });
+      }, { threshold: 0.25 }); // fire once ~a quarter of the hero is visible
+
+      observer.observe(stage);
+    })();
+  </script>
+
+  <!-- Scroll reveal: gently bring each section in as it enters the viewport.
+       We tag every section with `.reveal`, then add `.is-visible` once when it
+       appears (and stop watching, so it plays a single time and stays put). -->
+  <script>
+    (function () {
+      // Every section except the hero (the hero has its own build animation).
+      var sections = document.querySelectorAll('main > section:not(.hero)');
+      if (!sections.length) return;
+
+      // No IntersectionObserver support? Just show everything.
+      if (!('IntersectionObserver' in window)) {
+        sections.forEach(function (s) { s.classList.add('reveal', 'is-visible'); });
+        return;
+      }
+
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target); // play once, then stop watching
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -10% 0px' });
+
+      sections.forEach(function (s) {
+        // Light-background areas: keep the background static and reveal only the
+        // content blocks inside — otherwise the whole panel (background and all)
+        // would fade in, which looks off.
+        var contentOnly = s.classList.contains('services-section')
+                       || s.classList.contains('approach-light');
+        var targets = contentOnly ? s.querySelectorAll('.container') : [s];
+
+        targets.forEach(function (el) {
+          el.classList.add('reveal');  // set the hidden start state
+          observer.observe(el);
+        });
+      });
+    })();
+  </script>
 
 </body>
 </html>

@@ -106,18 +106,179 @@
 }
 .hero__actions { display: flex; gap: var(--space-2); flex-wrap: wrap; justify-content: center; }
 
-/* Hero product screenshot, floating below the headline */
+/* Hero product screenshot, floating below the headline.
+   The figure is now just a centring wrapper — the card styling lives on the
+   dashboard image so the floating chips can sit OUTSIDE its rounded corners. */
 .hero__media {
   width: 100%;
   max-width: min(880px, 100%);
   min-width: 0;   /* let the wrapper (and its image) shrink to fit */
   margin-top: var(--space-4);
+}
+
+/* The stage is the positioning context for every layer. Everything is placed
+   relative to this box, which is exactly the size of the dashboard. */
+.hero__stage {
+  position: relative;
+  width: 100%;
+}
+
+/* The main dashboard: the centre anchor. Keeps the card look (rounded +
+   shadow) the figure used to have. */
+.hero__dashboard {
+  display: block;
+  width: 100%;
+  height: auto;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-card);
-  overflow: hidden;
   background: var(--color-light);
+  position: relative;
+  z-index: 2;   /* above the "emotionality" layer, below nothing else */
 }
-.hero__media img { display: block; width: 100%; height: auto; }
+
+/* Every floating chip shares these basics. Widths are a % of the stage so the
+   whole composition scales together as the screen shrinks. */
+.hero__float {
+  position: absolute;
+  height: auto;
+  z-index: 3;   /* float above the dashboard... */
+  filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.28));
+  pointer-events: none;   /* decorative — never intercept clicks */
+  /* Frosted glass: blurs the gradient / dashboard showing through the
+     chip's transparent areas, so they read as translucent cards. */
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  border-radius: var(--radius-md);
+}
+
+/* --- LEFT side --------------------------------------------------------- */
+/* Platform Preference: upper-left, peeking past the dashboard edge */
+.hero__float--platform {
+  width: 27%;
+  top: 30%;
+  left: -11%;
+}
+/* Top Interest Drivers: mid-left, slightly further out */
+.hero__float--interest {
+  width: 32%;
+  top: 58%;
+  left: -14%;
+}
+
+/* --- RIGHT side -------------------------------------------------------- */
+/* Emotion chart (the tall "Total Reactions" donut card): upper-right */
+.hero__float--emotion {
+  width: 25%;
+  top: 16%;
+  right: -12%;
+}
+/* The three sentiment pills stack down the lower-right */
+.hero__float--lover  { width: 18%; top: 64%; right: -17%; }
+.hero__float--casual { width: 16%; top: 72%; right: -14%; }
+.hero__float--hater  { width: 18%; top: 80%; right: -17%; }
+
+/* Total Emotionality: BEHIND the dashboard, peeking out the left side */
+.hero__float--emotionality {
+  width: 38%;
+  top: -6%;
+  left: -16%;
+  z-index: 1;   /* the only layer below the dashboard */
+  filter: drop-shadow(0 14px 30px rgba(0, 0, 0, 0.30));
+}
+
+/* ------------------------------------------------------------
+   HERO ENTRANCE ANIMATION
+   The image "constructs itself" when the hero scrolls INTO VIEW:
+   the dashboard rises from the bottom, then the chips fan in from
+   their respective sides — all fading 0 -> 100% opacity.
+
+   A small script (in index.html) adds `.is-visible` to the stage the
+   moment it appears on screen, which is what kicks the animation off.
+   Until then the layers sit hidden so nothing flashes early.
+   ------------------------------------------------------------ */
+@keyframes hero-rise {
+  from { opacity: 0; transform: translateY(70px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes hero-from-left {
+  from { opacity: 0; transform: translateX(-90px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes hero-from-right {
+  from { opacity: 0; transform: translateX(90px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Start state: every layer is hidden until the hero is on screen. */
+.hero__dashboard,
+.hero__float {
+  opacity: 0;
+  animation-duration: 0.9s;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); /* smooth ease-out */
+  animation-fill-mode: both;
+}
+
+/* The animations only run once the stage has `.is-visible`. */
+/* 1) Dashboard rises first */
+.hero__stage.is-visible .hero__dashboard {
+  animation-name: hero-rise; animation-delay: 0.1s;
+}
+/* 2) Then the chips fan in from their sides, lightly staggered */
+.hero__stage.is-visible .hero__float--platform     { animation-name: hero-from-left;  animation-delay: 0.5s; }
+.hero__stage.is-visible .hero__float--interest     { animation-name: hero-from-left;  animation-delay: 0.65s; }
+.hero__stage.is-visible .hero__float--emotionality { animation-name: hero-from-left;  animation-delay: 0.8s; }
+.hero__stage.is-visible .hero__float--emotion      { animation-name: hero-from-right; animation-delay: 0.5s; }
+.hero__stage.is-visible .hero__float--lover        { animation-name: hero-from-right; animation-delay: 0.65s; }
+.hero__stage.is-visible .hero__float--casual       { animation-name: hero-from-right; animation-delay: 0.8s; }
+.hero__stage.is-visible .hero__float--hater        { animation-name: hero-from-right; animation-delay: 0.95s; }
+
+/* Accessibility: honour users who ask for less motion (WCAG 2.3.3).
+   They see the finished composition immediately, with no sliding. */
+@media (prefers-reduced-motion: reduce) {
+  .hero__dashboard,
+  .hero__float {
+    animation-name: none !important;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* On smaller screens the chips would crowd / overflow the dashboard, so we
+   tuck them away and let the dashboard stand on its own. */
+@media (max-width: 768px) {
+  .hero__float { display: none; }
+}
+
+/* ------------------------------------------------------------
+   SCROLL REVEAL  (applies to every section)
+   Each section starts hidden + nudged, then eases into place the
+   first time it scrolls into view. A script adds `.is-visible`.
+   Default motion is a gentle rise from the bottom; add the
+   `--left` / `--right` modifier class to slide in from a side.
+   ------------------------------------------------------------ */
+.reveal {
+  opacity: 0;
+  transform: translateY(48px);
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal--left  { transform: translateX(-56px); }
+.reveal--right { transform: translateX(56px); }
+
+/* Final, settled state */
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Accessibility: no sliding for reduced-motion users — show in place. */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
 
 /* ------------------------------------------------------------
    GENERIC IMAGE SLOT
@@ -498,6 +659,13 @@
   display: flex;
 }
 
+/* Lock the page scroll while any case-study modal is open.
+   `:has()` lets us react to a checked toggle without any JavaScript —
+   the whole page behind the modal stays frozen until it's closed. */
+html:has(.case-toggle:checked) {
+  overflow: hidden;
+}
+
 /* Dimmed, blurred backdrop — clicking it closes the modal */
 .case-modal__backdrop {
   position: absolute;
@@ -508,41 +676,146 @@
   cursor: pointer;
 }
 
-/* The dialog panel itself */
+/* The dialog panel — light surface, two columns, matching the Figma modal. */
 .case-modal__dialog {
   position: relative;
-  width: min(640px, 100%);
-  max-height: 85vh;
+  width: min(1080px, 100%);
+  max-height: 90vh;
   overflow-y: auto;
-  background: var(--color-surface);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: var(--radius-xl);
-  padding: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+  background: var(--color-light);
+  border-radius: 24px;
   box-shadow: var(--shadow-card);
+  color: var(--color-ink);
+  animation: case-modal-in var(--dur) var(--ease);
 }
+@keyframes case-modal-in {
+  from { opacity: 0; transform: translateY(16px) scale(0.985); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* Soft brand gradient wash across the top, sitting behind the content */
+.case-modal__wash {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 420px;
+  pointer-events: none;
+  border-radius: 24px 24px 0 0;
+  background:
+    radial-gradient(60% 70% at 0% 0%,  rgba(201, 21, 107, 0.16) 0%, transparent 60%),
+    radial-gradient(55% 65% at 38% 0%, rgba(222, 73, 59, 0.13)  0%, transparent 60%),
+    radial-gradient(60% 70% at 90% 0%, rgba(153, 72, 170, 0.14) 0%, transparent 60%);
+}
+
+/* Close button (minimize icon, top-right) */
 .case-modal__close {
   position: absolute;
   top: 16px;
   right: 16px;
-  width: 36px;
-  height: 36px;
+  z-index: 2;
+  width: 44px;
+  height: 44px;
   display: grid;
   place-items: center;
+  border: 0;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.08);
-  color: #fff;
+  background: transparent;
+  color: var(--color-ink);
   cursor: pointer;
   transition: background-color var(--dur) var(--ease);
 }
-.case-modal__close:hover { background: rgba(255, 255, 255, 0.16); }
-.case-modal__close svg { width: 18px; height: 18px; }
-.case-modal__icon { width: 56px; height: 56px; margin-bottom: var(--space-2); }
-.case-modal__icon img { width: 100%; height: 100%; object-fit: contain; }
-.case-modal__title { font-size: var(--fs-h2); font-weight: var(--fw-bold); }
-.case-modal__lead {
-  color: var(--text-on-dark-muted);
+.case-modal__close:hover { background: rgba(11, 18, 21, 0.06); }
+.case-modal__close svg { width: 22px; height: 22px; }
+
+/* Two-column content grid (text/chart on the left, methodology/results right) */
+.case-modal__grid {
+  position: relative;   /* above the wash */
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: clamp(2rem, 1rem + 3vw, 4rem);
+  padding: clamp(1.5rem, 1rem + 2.5vw, 3.5rem);
+}
+
+.case-modal__main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+/* Outlined category pill */
+.case-modal__tag {
+  align-self: flex-start;
+  border: 1px solid var(--color-ink);
+  border-radius: var(--radius-sm);
+  padding: 0.25rem 0.5rem;
+  font-size: var(--fs-small);
+  font-weight: var(--fw-semibold);
   line-height: var(--lh-loose);
-  margin: var(--space-2) 0 var(--space-3);
+}
+
+.case-modal__title {
+  font-size: clamp(1.75rem, 1rem + 2.6vw, 3rem);  /* up to 48px */
+  font-weight: var(--fw-semibold);
+  line-height: 1.12;
+  color: var(--color-ink);
+}
+
+.case-modal__overview {
+  font-size: var(--fs-body);
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-loose);
+  color: var(--color-ink);
+}
+.case-modal__overview strong { font-weight: var(--fw-semibold); }
+
+/* Chart image */
+.case-modal__chart {
+  margin-top: var(--space-2);
+  filter: drop-shadow(-10px 6px 24px rgba(0, 0, 0, 0.10));
+}
+.case-modal__chart img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-sm);
+}
+
+/* Right column: Methodology + Results */
+.case-modal__side {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding-top: var(--space-5);   /* drops it to align under the heading, per the design */
+}
+.case-modal__block { display: flex; flex-direction: column; gap: var(--space-1); }
+.case-modal__block-label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--fs-small);
+  font-weight: var(--fw-semibold);
+  color: var(--color-ink);
+}
+.case-modal__block-label svg { width: 16px; height: 16px; color: var(--color-brand-red); }
+.case-modal__block-text {
+  font-size: var(--fs-small);
+  font-weight: var(--fw-normal);
+  line-height: var(--lh-loose);
+  color: var(--color-ink);
+}
+.case-modal__block-text strong { font-weight: var(--fw-medium); }
+.case-modal__divider {
+  border: 0;
+  border-top: 1px solid rgba(11, 18, 21, 0.1);
+  margin: 0;
+  width: 100%;
+}
+
+/* Stack to a single column on tablet / mobile */
+@media (max-width: 900px) {
+  .case-modal__grid { grid-template-columns: 1fr; }
+  .case-modal__side { padding-top: 0; }
 }
 
 /* Tablet: stack intro above the grid */
@@ -568,6 +841,11 @@
   background: #f5f5fa;           /* soft off-white lavender surface */
   color: var(--color-ink);
 }
+/* The SDK block now lives inside the Advanced Services section. Re-create the
+   gap the two stacked sections used to have between them. */
+.sdk-block { margin-top: calc(var(--section-pad-y) * 2); }
+/* Extra breathing room below the partner logos at the bottom of the section */
+#advanced-services { padding-bottom: clamp(5rem, 3rem + 8vw, 10rem); }
 .services-section .section-head { max-width: 760px; }
 .services-section .section-head h2   { color: var(--color-ink); }
 .services-section .section-head .lead { color: var(--text-muted); margin-inline: auto; }
@@ -635,8 +913,49 @@
   border: 1px solid rgba(11, 18, 21, 0.08);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-soft);
+  /* covers both the entrance pop and the hover lift */
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+              opacity 0.45s ease,
+              box-shadow 0.25s ease;
 }
 .svc-logo img { width: 34px; height: 34px; object-fit: contain; }
+
+/* Gentle lift on hover */
+.svc-logo:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 22px rgba(11, 18, 21, 0.14);
+}
+
+/* ----- Staggered entrance for the logo chips -----
+   The row's own reveal motion is neutralised so only the chips animate,
+   each popping in just after the previous one. */
+.svc-logos.reveal { opacity: 1; transform: none; }
+
+.svc-logos .svc-logo {
+  opacity: 0;
+  transform: translateY(18px) scale(0.9);
+}
+.svc-logos.is-visible .svc-logo {
+  opacity: 1;
+  transform: none;
+}
+.svc-logos.is-visible .svc-logo:nth-child(1) { transition-delay: 0s; }
+.svc-logos.is-visible .svc-logo:nth-child(2) { transition-delay: 0.06s; }
+.svc-logos.is-visible .svc-logo:nth-child(3) { transition-delay: 0.12s; }
+.svc-logos.is-visible .svc-logo:nth-child(4) { transition-delay: 0.18s; }
+.svc-logos.is-visible .svc-logo:nth-child(5) { transition-delay: 0.24s; }
+.svc-logos.is-visible .svc-logo:nth-child(6) { transition-delay: 0.30s; }
+.svc-logos.is-visible .svc-logo:nth-child(7) { transition-delay: 0.36s; }
+.svc-logos.is-visible .svc-logo:nth-child(8) { transition-delay: 0.42s; }
+
+/* Accessibility: no motion for users who ask for less. */
+@media (prefers-reduced-motion: reduce) {
+  .svc-logos .svc-logo {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
 
 /* Tablet: 2 columns, tall card returns to normal flow */
 @media (max-width: 900px) {
@@ -688,17 +1007,140 @@
 .field textarea { resize: vertical; min-height: 110px; }
 .contact-form .btn { width: 100%; height: 48px; }
 
+/* ---- Contact: split intro + two-panel booking card ---- */
+.contact__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: clamp(2rem, 1rem + 4vw, 4.5rem);
+  align-items: center;
+}
+.contact__title {
+  font-size: clamp(1.625rem, 1.1rem + 2.2vw, 2.375rem);
+  font-weight: var(--fw-semibold);
+  line-height: var(--lh-tight);
+  color: #fff;
+  text-wrap: balance;
+}
+.contact__text {
+  color: var(--text-on-dark-muted);
+  line-height: var(--lh-loose);
+  max-width: 46ch;
+  margin-top: var(--space-3);
+}
+
+/* The white card — single panel holding the form */
+.booking-card {
+  background: #fff;
+  color: var(--color-ink);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+.booking-card__form { padding: clamp(1.5rem, 1rem + 2vw, 2.5rem); }
+
+/* CSS brand wordmark: VOL [red K] NO */
+.vk-wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-weight: var(--fw-extrabold);
+  font-size: 1.25rem;
+  letter-spacing: 0.02em;
+  color: var(--color-ink);
+}
+.vk-wordmark__k {
+  display: inline-grid;
+  place-items: center;
+  width: 1.35em;
+  height: 1.35em;
+  margin-inline: 1px;
+  background: var(--color-brand-red);
+  color: #fff;
+  border-radius: 5px;
+}
+
+.booking-card__title {
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-extrabold);
+  color: var(--color-ink);
+  margin: var(--space-3) 0 var(--space-2);
+}
+.booking-card__meta {
+  list-style: none;
+  margin: 0 0 var(--space-3);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.booking-card__meta li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: var(--fs-small);
+  color: var(--text-muted);
+}
+.booking-card__meta svg { width: 18px; height: 18px; flex: none; }
+.booking-card__desc {
+  font-size: var(--fs-small);
+  line-height: var(--lh-loose);
+  color: var(--text-muted-2);
+}
+
+.booking-card__form-title {
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-bold);
+  color: var(--color-ink);
+  margin-bottom: var(--space-3);
+}
+.booking-form { display: grid; gap: var(--space-2); }
+.booking-form .field label { color: var(--text-muted); }
+/* Light-themed inputs (the card is white) — overrides the dark .field rule */
+.booking-form .field input,
+.booking-form .field textarea {
+  background: #f5f5fa;
+  border: 1px solid rgba(11, 18, 21, 0.14);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  color: var(--color-ink);
+}
+.booking-form .field input:focus,
+.booking-form .field textarea:focus {
+  outline: none;
+  border-color: var(--color-accent-strong);
+}
+.booking-form .field textarea { resize: vertical; min-height: 90px; }
+.booking-form .btn { width: 100%; height: 48px; margin-top: var(--space-1); }
+
+/* Stack intro above card on tablet; stack panels on mobile */
+@media (max-width: 900px) {
+  .contact__inner { grid-template-columns: 1fr; }
+  .contact__text { max-width: 60ch; }
+}
+
 .footer {
-  border-top: 1px solid rgba(255,255,255,0.08);
-  padding-block: var(--space-5);
+  border-top: 1px solid rgba(255,255,255,0.12);
+  padding-block: var(--space-3);
 }
 .footer__inner {
-  display: flex; flex-wrap: wrap; gap: var(--space-3);
+  display: flex; flex-wrap: wrap; gap: var(--space-2);
   align-items: center; justify-content: space-between;
 }
-.footer__logo img { height: 22px; }
-.footer__links { display: flex; gap: var(--space-3); flex-wrap: wrap; font-size: var(--fs-small); color: var(--text-on-dark-muted); }
-.footer__copy { color: var(--text-muted); font-size: var(--fs-small); width: 100%; }
+/* Left: Terms Of Use | Privacy Policy */
+.footer__links {
+  display: flex; align-items: center; gap: var(--space-2);
+  list-style: none; margin: 0; padding: 0;
+  font-size: var(--fs-small);
+}
+.footer__links a {
+  color: var(--text-on-dark);
+  text-decoration: none;
+  transition: color var(--dur) var(--ease);
+}
+.footer__links a:hover { color: var(--color-accent); }
+.footer__sep { color: var(--text-muted-2); }
+/* Right: copyright */
+.footer__copy { color: var(--text-on-dark-muted); font-size: var(--fs-small); margin: 0; }
 
 /* ------------------------------------------------------------
    RESPONSIVE  (mobile-first base above; these scale UP)
